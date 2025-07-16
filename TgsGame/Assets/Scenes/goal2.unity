@@ -542,6 +542,10 @@ PrefabInstance:
       propertyPath: m_text
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 3054679590060791170, guid: 45e87ea62d361a948ab4a823c76f6da3, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 2100000, guid: 7fb6976d7331a2c4a8084f16d65047b2, type: 2}
     - target: {fileID: 3485005065689023707, guid: 45e87ea62d361a948ab4a823c76f6da3, type: 3}
       propertyPath: m_SizeDelta.x
       value: 774

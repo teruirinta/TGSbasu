@@ -557,15 +557,19 @@ PrefabInstance:
     - target: {fileID: 2884142006481507890, guid: 45e87ea62d361a948ab4a823c76f6da3, type: 3}
       propertyPath: m_fontAsset
       value: 
-      objectReference: {fileID: 11400000, guid: f76dacc537e97e342be6046875bee747, type: 2}
+      objectReference: {fileID: 11400000, guid: b840c0f467dc9344cb4a0c44491d9592, type: 2}
     - target: {fileID: 2884142006481507890, guid: 45e87ea62d361a948ab4a823c76f6da3, type: 3}
       propertyPath: m_sharedMaterial
       value: 
-      objectReference: {fileID: -4994449442092199489, guid: f76dacc537e97e342be6046875bee747, type: 2}
+      objectReference: {fileID: 7787611337310569975, guid: b840c0f467dc9344cb4a0c44491d9592, type: 2}
     - target: {fileID: 2884142006481507890, guid: 45e87ea62d361a948ab4a823c76f6da3, type: 3}
       propertyPath: m_hasFontAssetChanged
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3054679590060791170, guid: 45e87ea62d361a948ab4a823c76f6da3, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 2100000, guid: 7fb6976d7331a2c4a8084f16d65047b2, type: 2}
     - target: {fileID: 3485005065689023707, guid: 45e87ea62d361a948ab4a823c76f6da3, type: 3}
       propertyPath: m_SizeDelta.x
       value: 774
