@@ -2898,11 +2898,11 @@ PrefabInstance:
     - target: {fileID: 8138810171881650834, guid: 39e9dd893498cf543853a0dff8003cb4, type: 3}
       propertyPath: m_fontAsset
       value: 
-      objectReference: {fileID: 11400000, guid: 324ebd270579a314597edefa33a52861, type: 2}
+      objectReference: {fileID: 11400000, guid: b840c0f467dc9344cb4a0c44491d9592, type: 2}
     - target: {fileID: 8138810171881650834, guid: 39e9dd893498cf543853a0dff8003cb4, type: 3}
       propertyPath: m_sharedMaterial
       value: 
-      objectReference: {fileID: 7381264324779724228, guid: 324ebd270579a314597edefa33a52861, type: 2}
+      objectReference: {fileID: 7787611337310569975, guid: b840c0f467dc9344cb4a0c44491d9592, type: 2}
     - target: {fileID: 8138810171881650834, guid: 39e9dd893498cf543853a0dff8003cb4, type: 3}
       propertyPath: m_hasFontAssetChanged
       value: 0
