@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class FloatingObject : MonoBehaviour
 {
-    public float fallSpeed = 0.1f;        // Ã~‚Ì—‰º‘¬“x
+    public float fallSpeed = 0.5f;        // Ã~‚Ì—‰º‘¬“x
     public float startMoveSpeed = 2.0f;   // ƒQ[ƒ€ŠJn‚Ì¶ˆÚ“®‘¬“x
     public float startMoveDuration = 1.5f; // ¶ˆÚ“®ŠÔ
 
@@ -17,17 +17,17 @@ public class FloatingObject : MonoBehaviour
     void Update()
     {
         if (isStartMoving)
-        {
-            // transform ‚Å¶‚ÖˆÚ“®
-            transform.Translate(Vector3.left * startMoveSpeed * Time.deltaTime);
-            startMoveTimer -= Time.deltaTime;
+        //{
+        //    // transform ‚Å¶‚ÖˆÚ“®
+        //    transform.Translate(Vector3.left * startMoveSpeed * Time.deltaTime);
+        //    startMoveTimer -= Time.deltaTime;
 
-            if (startMoveTimer <= 0f)
-            {
-                isStartMoving = false;
-            }
-        }
-        else
+        //    if (startMoveTimer <= 0f)
+        //    {
+        //        isStartMoving = false;
+        //    }
+        //}
+        //else
         {
             // Ã~‚É‚ä‚Á‚­‚è—‚¿‚é
             transform.position += Vector3.down * fallSpeed * Time.deltaTime;

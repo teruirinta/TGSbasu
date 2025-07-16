@@ -10,6 +10,8 @@ TagManager:
   - Enemy2
   - kabe
   - ItemScore
+  - konbu
+  - Basu
   layers:
   - Default
   - TransparentFX

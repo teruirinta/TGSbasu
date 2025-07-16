@@ -29,5 +29,9 @@ public class KAbe : MonoBehaviour
         {
             Destroy(other.gameObject);
         }
+        if (other.CompareTag("konbu"))
+        {
+            Destroy(other.gameObject);
+        }
     }
 }

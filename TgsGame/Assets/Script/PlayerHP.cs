@@ -1,6 +1,6 @@
-using UnityEngine;
+Ôªøusing UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI; // Å© í«â¡ÅIUIÇàµÇ§ÇΩÇﬂ
+using UnityEngine.UI;
 
 public class PlayerHP : MonoBehaviour
 {
@@ -8,9 +8,15 @@ public class PlayerHP : MonoBehaviour
     private int currentHP;
 
     [Header("UI Settings")]
-    public Image[] hearts;         // ÉnÅ[ÉgâÊëúÅiç∂Ç©ÇÁèáÇ…îzíuÅj
-    public Sprite fullHeart;       // ñûÉ^ÉìÉnÅ[ÉgâÊëú
-    public Sprite emptyHeart;      // ãÛÇ¡Ç€ÉnÅ[ÉgâÊëú
+    public Image[] hearts;
+    public Sprite fullHeart;
+    public Sprite emptyHeart;
+
+    [Header("SE Settings")]
+    public AudioClip damageSE;
+    public AudioClip healSE;
+    public AudioClip scoreSE;
+    public AudioSource audioSource; // ÂäπÊûúÈü≥ÂÜçÁîüÁî®
 
     void Start()
     {
@@ -18,26 +24,35 @@ public class PlayerHP : MonoBehaviour
         UpdateHearts();
     }
 
+
+
     void OnTriggerEnter(Collider other)
     {
-        // ìGÇ…êGÇÍÇΩÇÁÉ_ÉÅÅ[ÉW
         if (other.CompareTag("Enemy1"))
         {
+            PlaySE(damageSE);
             TakeDamage(1);
             Destroy(other.gameObject);
         }
 
-        // ÉAÉCÉeÉÄÇ…êGÇÍÇΩÇÁâÒïú
         if (other.CompareTag("Item1"))
         {
+            PlaySE(healSE);
             Heal(1);
-            Destroy(other.gameObject); // êGÇÍÇΩÉAÉCÉeÉÄÇÕè¡Ç¶ÇÈÇÊÇ§Ç…
+            Destroy(other.gameObject, 0.1f); // Â∞ë„ÅóÈÅÖ„Çâ„Åõ„Å¶Á†¥Â£ä
+        }
+
+        if (other.CompareTag("Item2"))
+        {
+            PlaySE(healSE);
+
+            Destroy(other.gameObject, 0.1f); // Â∞ë„ÅóÈÅÖ„Çâ„Åõ„Å¶Á†¥Â£ä
         }
 
         if (other.CompareTag("ItemScore"))
         {
-           
-            Destroy(other.gameObject); // êGÇÍÇΩÉAÉCÉeÉÄÇÕè¡Ç¶ÇÈÇÊÇ§Ç…
+            PlaySE(scoreSE);
+            Destroy(other.gameObject);
         }
     }
 
@@ -56,21 +71,21 @@ public class PlayerHP : MonoBehaviour
 
     void Heal(int amount)
     {
-        // HPÇ™ñûÉ^ÉìÇ»ÇÁâÒïúÇµÇ»Ç¢
         if (currentHP >= maxHP)
         {
-           
             return;
         }
 
         currentHP += amount;
         currentHP = Mathf.Clamp(currentHP, 0, maxHP);
-        Debug.Log("HP: " + currentHP + "ÅiâÒïúÅIÅj");
+        Debug.Log("HP: " + currentHP + "ÔºàÂõûÂæ©ÔºÅÔºâ");
         UpdateHearts();
     }
 
     void Die()
     {
+
+        PlayerPrefs.SetString("PreviousScene", SceneManager.GetActiveScene().name);
         SceneManager.LoadScene("GameOver");
     }
 
@@ -78,11 +93,18 @@ public class PlayerHP : MonoBehaviour
     {
         for (int i = 0; i < hearts.Length; i++)
         {
-            // ÉnÅ[ÉgÇâEÇ©ÇÁå∏ÇÁÇ∑èàóùÅI
             if (i >= maxHP - currentHP)
                 hearts[i].sprite = fullHeart;
             else
                 hearts[i].sprite = emptyHeart;
+        }
+    }
+
+    void PlaySE(AudioClip clip)
+    {
+        if (audioSource != null && clip != null)
+        {
+            audioSource.PlayOneShot(clip);
         }
     }
 }

@@ -16,6 +16,9 @@ public class ScoreManager : MonoBehaviour
     private int currentDownTotal = 0;
     private Coroutine upCoroutine = null;
     private Coroutine downCoroutine = null;
+    public bool isGoalReached = false;
+
+    [SerializeField] private Transform goalTransform;
 
     void Start()
     {
@@ -30,6 +33,12 @@ public class ScoreManager : MonoBehaviour
 
     void Update()
     {
+
+        if (goalTransform != null && goalTransform.position.x <= 0.5f)
+        {
+            return; // ゴールのXが0.5以下ならスコア加算を停止
+        }
+
         timeCounter += Time.deltaTime;
 
         if (timeCounter >= 1f)
@@ -38,6 +47,7 @@ public class ScoreManager : MonoBehaviour
             timeCounter = 0f;
             UpdateScoreText();
         }
+
     }
 
     void OnTriggerEnter(Collider other)
@@ -68,12 +78,25 @@ public class ScoreManager : MonoBehaviour
             }
             upCoroutine = StartCoroutine(ShowUpEffect());
         }
-        else if (other.CompareTag("Item1") || other.CompareTag("Item2"))
+        else if (other.CompareTag("Item1"))
         {
             score += 200;
             UpdateScoreText();
 
             currentUpTotal += 200;
+
+            if (upCoroutine != null)
+            {
+                StopCoroutine(upCoroutine);
+            }
+            upCoroutine = StartCoroutine(ShowUpEffect());
+        }
+        else if (other.CompareTag("Item2"))
+        {
+            score += 100;
+            UpdateScoreText();
+
+            currentUpTotal += 100;
 
             if (upCoroutine != null)
             {
@@ -87,7 +110,7 @@ public class ScoreManager : MonoBehaviour
     {
         if (scoreText != null)
         {
-            scoreText.text = "Score: " + score.ToString();
+            scoreText.text = "スコア: " + score.ToString();
         }
     }
 

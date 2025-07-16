@@ -1,27 +1,27 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class goal : MonoBehaviour
 {
-
     private float timer = 0f;
-    public float switchTime = 180f; // 3分（180秒）
+    public float switchTime = 180f;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    [SerializeField] private ScoreManager scoreManager; // インスペクターで設定
     void Start()
     {
-
+        
     }
 
-    // Update is called once per frame
+
     void Update()
     {
-
         timer += Time.deltaTime;
 
         if (timer >= switchTime)
         {
-            SceneManager.LoadScene("goal");
+            PlayerPrefs.SetInt("FinalScore", scoreManager.score);
+            SceneManager.LoadScene("goal"); // ゴールシーンに移動
         }
     }
 }

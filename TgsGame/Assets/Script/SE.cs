@@ -1,0 +1,28 @@
+using UnityEngine;
+
+public class SE : MonoBehaviour
+{
+    private AudioSource audioSource;
+
+    void Start()
+    {
+        audioSource = GetComponent<AudioSource>();
+
+        if (audioSource == null)
+        {
+            Debug.LogError("AudioSource Ç™å©Ç¬Ç©ÇËÇ‹ÇπÇÒÅI");
+        }
+        else if (!audioSource.enabled)
+        {
+            Debug.LogError("AudioSource Ç™ñ≥å¯Ç…Ç»Ç¡ÇƒÇ¢Ç‹Ç∑ÅI");
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player") && audioSource != null && audioSource.enabled)
+        {
+            audioSource.Play();
+        }
+    }
+}
