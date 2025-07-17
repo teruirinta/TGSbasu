@@ -1105,6 +1105,14 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2997951705106470535, guid: bdafc2819a71a8e4284a122fe3c43b3e, type: 3}
+      propertyPath: moveForce
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2997951705106470535, guid: bdafc2819a71a8e4284a122fe3c43b3e, type: 3}
+      propertyPath: recoverDelay
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 3552201182269383262, guid: bdafc2819a71a8e4284a122fe3c43b3e, type: 3}
       propertyPath: m_Center.y
       value: 0
