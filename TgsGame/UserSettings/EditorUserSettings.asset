@@ -5,8 +5,13 @@ EditorUserSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 4
   m_ConfigSettings:
+<<<<<<< HEAD
     lightmappingBakingProfile:
       value: 51
+=======
+    RecentlyUsedSceneGuid-0:
+      value: 5655575256505f5d5b0d547415705b44104e1d2e7c707e68757e4e62e3b6303e
+>>>>>>> c03efdb205e8f46343599d13994d79467bd42bcf
       flags: 0
     vcSharedLogLevel:
       value: 0d5e400f0650
