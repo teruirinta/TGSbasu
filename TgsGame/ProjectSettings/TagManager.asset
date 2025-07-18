@@ -12,6 +12,9 @@ TagManager:
   - ItemScore
   - konbu
   - Basu
+  - Item1E
+  - Item2E
+  - ItemSC
   layers:
   - Default
   - TransparentFX
