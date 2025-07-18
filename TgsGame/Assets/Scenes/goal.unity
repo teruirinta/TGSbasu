@@ -305,11 +305,11 @@ PrefabInstance:
     - target: {fileID: 2600705153310143841, guid: 740023b7312386a4882d575d8d2c673a, type: 3}
       propertyPath: m_Resource
       value: 
-      objectReference: {fileID: 8300000, guid: e7b8af293a50b4848968478b0ad2d0b1, type: 3}
+      objectReference: {fileID: 8300000, guid: 4e9dc4fa6227cb44e81eea40075af0d2, type: 3}
     - target: {fileID: 2600705153310143841, guid: 740023b7312386a4882d575d8d2c673a, type: 3}
       propertyPath: m_audioClip
       value: 
-      objectReference: {fileID: 8300000, guid: e7b8af293a50b4848968478b0ad2d0b1, type: 3}
+      objectReference: {fileID: 8300000, guid: 4e9dc4fa6227cb44e81eea40075af0d2, type: 3}
     - target: {fileID: 7388639194653007320, guid: 740023b7312386a4882d575d8d2c673a, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.6482233
@@ -933,6 +933,8 @@ MonoBehaviour:
   - {fileID: 2052350054}
   - {fileID: 2043026921}
   selector: {fileID: 638447421}
+  moveSE: {fileID: 8300000, guid: 9d637153a67d7934d8b1c420a23d0336, type: 3}
+  decideSE: {fileID: 8300000, guid: b3aad4a27e28ff941ac5a3d464292942, type: 3}
 --- !u!1 &2022620661
 GameObject:
   m_ObjectHideFlags: 0

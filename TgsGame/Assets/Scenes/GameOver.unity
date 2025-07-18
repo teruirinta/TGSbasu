@@ -288,6 +288,8 @@ MonoBehaviour:
   - {fileID: 688336517}
   - {fileID: 686507746}
   selector: {fileID: 582185061}
+  moveSE: {fileID: 8300000, guid: 9d637153a67d7934d8b1c420a23d0336, type: 3}
+  decideSE: {fileID: 8300000, guid: b3aad4a27e28ff941ac5a3d464292942, type: 3}
 --- !u!1001 &475064652
 PrefabInstance:
   m_ObjectHideFlags: 0

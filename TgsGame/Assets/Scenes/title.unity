@@ -407,6 +407,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   selector: {fileID: 361710727}
+  moveSE: {fileID: 8300000, guid: 9d637153a67d7934d8b1c420a23d0336, type: 3}
+  decideSE: {fileID: 8300000, guid: b3aad4a27e28ff941ac5a3d464292942, type: 3}
 --- !u!4 &646083944
 Transform:
   m_ObjectHideFlags: 0
@@ -1168,7 +1170,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2997951705106470535, guid: bdafc2819a71a8e4284a122fe3c43b3e, type: 3}
       propertyPath: moveForce
-      value: 200
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 2997951705106470535, guid: bdafc2819a71a8e4284a122fe3c43b3e, type: 3}
       propertyPath: recoverDelay
@@ -1476,16 +1478,20 @@ PrefabInstance:
       value: BGMBOX
       objectReference: {fileID: 0}
     - target: {fileID: 2600705153310143841, guid: 740023b7312386a4882d575d8d2c673a, type: 3}
+      propertyPath: m_Volume
+      value: 0.119
+      objectReference: {fileID: 0}
+    - target: {fileID: 2600705153310143841, guid: 740023b7312386a4882d575d8d2c673a, type: 3}
       propertyPath: m_Resource
       value: 
-      objectReference: {fileID: 8300000, guid: e7b8af293a50b4848968478b0ad2d0b1, type: 3}
+      objectReference: {fileID: 8300000, guid: e1d0a44888914a04cb8cc802939d8b96, type: 3}
     - target: {fileID: 2600705153310143841, guid: 740023b7312386a4882d575d8d2c673a, type: 3}
       propertyPath: m_audioClip
       value: 
-      objectReference: {fileID: 8300000, guid: e7b8af293a50b4848968478b0ad2d0b1, type: 3}
+      objectReference: {fileID: 8300000, guid: e1d0a44888914a04cb8cc802939d8b96, type: 3}
     - target: {fileID: 7388639194653007320, guid: 740023b7312386a4882d575d8d2c673a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.01
+      value: 27.69
       objectReference: {fileID: 0}
     - target: {fileID: 7388639194653007320, guid: 740023b7312386a4882d575d8d2c673a, type: 3}
       propertyPath: m_LocalPosition.y

@@ -6,6 +6,10 @@ public class RetrySelect : MonoBehaviour
     public RectTransform[] menuItems;
     public RectTransform selector;
 
+    public AudioClip moveSE;   // カーソル移動音
+    public AudioClip decideSE; // 決定音
+    private AudioSource audioSource;
+
     private int currentIndex = 0;
     private float inputCooldown = 0.3f;
     private float lastInputTime = 0f;
@@ -13,6 +17,12 @@ public class RetrySelect : MonoBehaviour
     void Start()
     {
         UpdateSelectorPosition();
+
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+        }
     }
 
     void Update()
@@ -26,28 +36,22 @@ public class RetrySelect : MonoBehaviour
                 currentIndex = (currentIndex - 1 + menuItems.Length) % menuItems.Length;
                 UpdateSelectorPosition();
                 lastInputTime = Time.time;
+                PlaySE(moveSE); // カーソル移動音
             }
             else if (dpadY < -0.5f)
             {
                 currentIndex = (currentIndex + 1) % menuItems.Length;
                 UpdateSelectorPosition();
                 lastInputTime = Time.time;
+                PlaySE(moveSE); // カーソル移動音
             }
         }
 
-        // Aボタンで決定（通常は joystick button 0）
         if (Input.GetKeyDown("joystick button 1"))
         {
+            PlaySE(decideSE); // 決定音
             SelectStage(currentIndex);
         }
-
-        void UpdateSelectorPosition()
-        {
-            // 三角形を選択中のメニュー項目の左に配置
-            Vector2 targetAnchoredPosition = menuItems[currentIndex].anchoredPosition;
-            selector.anchoredPosition = new Vector2(targetAnchoredPosition.x - 500f, targetAnchoredPosition.y);
-        }
-
     }
 
     void UpdateSelectorPosition()
@@ -58,7 +62,6 @@ public class RetrySelect : MonoBehaviour
 
     void SelectStage(int index)
     {
-
         Debug.Log("選択されたインデックス: " + index);
 
         if (index == 0)
@@ -70,5 +73,12 @@ public class RetrySelect : MonoBehaviour
             SceneManager.LoadScene("title");
         }
     }
-}
 
+    void PlaySE(AudioClip clip)
+    {
+        if (audioSource != null && clip != null)
+        {
+            audioSource.PlayOneShot(clip);
+        }
+    }
+}
