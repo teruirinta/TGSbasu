@@ -9,12 +9,14 @@ public class EnemyMove : MonoBehaviour
     public float yThreshold = 0.5f;
     public float xThreshold = 3f;
 
-    public AudioClip swimSoundClip; // ← 泳ぎサウンドをInspectorに設定
+    public AudioClip swimSoundClip;
     private AudioSource audioSource;
 
     private Vector3 startPos;
     private GameObject player;
-    private bool isBoosting = false; // 今加速中かどうかを記録
+    private bool isBoosting = false;
+
+    private Collider enemyCollider; // ← 追加：自分のCollider参照
 
     void Start()
     {
@@ -23,12 +25,29 @@ public class EnemyMove : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         if (player == null)
         {
-            Debug.LogWarning("Playerオブジェクトが見つからないラ！");
+            Debug.LogWarning("Playerオブジェクトが見つかりません。エネミーは動きません。");
+            enabled = false;
+            return;
         }
 
+        // Collider取得
+        enemyCollider = GetComponent<Collider>();
+        if (enemyCollider == null)
+        {
+            Debug.LogWarning("Collider が見つかりません。");
+        }
+
+        // AudioSourceの初期化
         audioSource = gameObject.AddComponent<AudioSource>();
-        audioSource.clip = swimSoundClip;
-        audioSource.loop = false; // 一回だけ再生（ループしたいならtrueに）
+        if (swimSoundClip != null)
+        {
+            audioSource.clip = swimSoundClip;
+            audioSource.loop = false;
+        }
+        else
+        {
+            Debug.LogWarning("swimSoundClip が設定されていません。サウンドは再生されません。");
+        }
     }
 
     void Update()
@@ -39,10 +58,8 @@ public class EnemyMove : MonoBehaviour
         float xDiff = Mathf.Abs(transform.position.x - player.transform.position.x);
 
         bool shouldBoost = (yDiff <= yThreshold && xDiff <= xThreshold);
-
         float currentSpeed = shouldBoost ? boostedSpeed : normalSpeed;
 
-        // 状態が変わったときにサウンドを再生
         if (shouldBoost && !isBoosting)
         {
             isBoosting = true;
@@ -54,8 +71,6 @@ public class EnemyMove : MonoBehaviour
         else if (!shouldBoost && isBoosting)
         {
             isBoosting = false;
-            // ループするなら止めてもOK：
-            // audioSource.Stop();
         }
 
         float newY = Mathf.Sin(Time.time * verticalSpeed) * moveAmount;
@@ -67,7 +82,22 @@ public class EnemyMove : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Destroy(gameObject);
+            // 一時的に当たり判定を無効化
+            if (enemyCollider != null)
+            {
+                enemyCollider.enabled = false;
+                Invoke(nameof(EnableCollider), 3f); // 2.5秒後に再有効化
+            }
+
+            // 必要ならここでエフェクトやダメージ処理を追加可能
+        }
+    }
+
+    void EnableCollider()
+    {
+        if (enemyCollider != null)
+        {
+            enemyCollider.enabled = true;
         }
     }
 }

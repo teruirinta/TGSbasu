@@ -1,14 +1,16 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
+using System.Collections.Generic;
 
-public class Player : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
-    public float moveForce = 10f; // スティック方向への移動力
+    public float moveForce = 10f;
     public float recoverDelay = 2f;
     public float recoverRate = 2f;
 
     public Slider staminaSlider;
-    public GameObject particleEffectPrefab; // パーティクルのプレハブ
+    public GameObject particleEffectPrefab;
 
     private float lastPressTime;
     private float recoverTimer;
@@ -18,34 +20,51 @@ public class Player : MonoBehaviour
 
     private Rigidbody rb;
 
+    public float blinkDuration = 1.5f;
+    public float blinkInterval = 0.2f;
+
+    private List<Renderer> childRenderers = new List<Renderer>();
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         lastPressTime = -recoverDelay;
+
+        Renderer[] allRenderers = GetComponentsInChildren<Renderer>();
+        Renderer parentRenderer = GetComponent<Renderer>();
+
+        foreach (Renderer r in allRenderers)
+        {
+            if (r != parentRenderer) // 親の Renderer を除外
+            {
+                childRenderers.Add(r);
+            }
+        }
+
+        if (childRenderers.Count == 0)
+        {
+            Debug.LogWarning("子オブジェクトの Renderer が見つかりません。点滅できません。");
+        }
     }
 
     void Update()
     {
-        // 左スティックの入力
+        Vector3 newPosition = transform.position;
+        newPosition.z = 0;
+        transform.position = newPosition;
+
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
         float zRotation = transform.rotation.eulerAngles.z;
 
-        Vector2 direction = new Vector2(horizontal, vertical);
-
-        if (direction.magnitude > 0.1f) // 入力があるとき
+        if (horizontal != 0 || vertical != 0)
         {
-            // 回転処理
+            Vector2 direction = new Vector2(horizontal, vertical);
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
             Quaternion targetRotation = Quaternion.Euler(0, 0, angle);
             transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, Time.deltaTime * 3f);
-
-            // 移動処理（スティック方向に移動）
-            Vector3 moveDir = new Vector3(direction.x, direction.y, 0).normalized;
-            rb.AddForce(moveDir * moveForce * Time.deltaTime, ForceMode.Force);
         }
 
-        // Y軸反転処理（見た目の向き調整）
         if (zRotation > 90f && zRotation < 270f)
         {
             Vector3 scale = transform.localScale;
@@ -59,23 +78,23 @@ public class Player : MonoBehaviour
             transform.localScale = scale;
         }
 
-        // Aボタン押した時の処理（パーティクル表示のみ）
         if (Input.GetButtonDown("Fire1"))
         {
-            if (particleEffectPrefab != null)
+            Vector2 inputDirection = new Vector2(horizontal, vertical);
+
+            if (inputDirection.magnitude > 0.1f)
             {
-                GameObject effect = Instantiate(particleEffectPrefab, transform.position, Quaternion.identity);
-                Destroy(effect, 1f); // 1秒後に自動削除
+                inputDirection.Normalize();
+                Vector3 forceDirection = new Vector3(inputDirection.x, inputDirection.y, 0f);
+                rb.AddForce(forceDirection * moveForce, ForceMode.Impulse);
+
+                if (particleEffectPrefab != null)
+                {
+                    GameObject effect = Instantiate(particleEffectPrefab, transform.position, Quaternion.identity);
+                    Destroy(effect, 1f);
+                }
             }
         }
-    }
-
-    void LateUpdate()
-    {
-        // Z位置固定（物理演算後に位置を調整）
-        Vector3 pos = transform.position;
-        pos.z = 0f;
-        transform.position = pos;
     }
 
     void OnTriggerEnter(Collider other)
@@ -94,12 +113,32 @@ public class Player : MonoBehaviour
         {
             currentHP--;
             currentHP = Mathf.Clamp(currentHP, 0, maxHP);
-            Destroy(other.gameObject);
+
+            StartCoroutine(BlinkEffect());
         }
 
         if (other.CompareTag("Item2"))
         {
             Destroy(other.gameObject);
+        }
+    }
+
+    IEnumerator BlinkEffect()
+    {
+        float timer = 0f;
+        while (timer < blinkDuration)
+        {
+            foreach (Renderer r in childRenderers)
+            {
+                r.enabled = !r.enabled;
+            }
+            yield return new WaitForSeconds(blinkInterval);
+            timer += blinkInterval;
+        }
+
+        foreach (Renderer r in childRenderers)
+        {
+            r.enabled = true;
         }
     }
 }

@@ -155,7 +155,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5687b1d7d79c56444946b7f823b850af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveForce: 200
+  moveForce: 0.7
   recoverDelay: 2
   recoverRate: 7
   staminaSlider: {fileID: 0}

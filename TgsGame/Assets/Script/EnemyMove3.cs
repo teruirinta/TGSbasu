@@ -2,15 +2,22 @@ using UnityEngine;
 
 public class EnemyMove3 : MonoBehaviour
 {
-    public float horizontalSpeed = 2f; // ¶‚Ö‚ÌˆÚ“®‘¬“x
-    public float floatAmplitude = 0.5f; // ã‰º‚ÌU•
-    public float floatFrequency = 1f; // ã‰º‚Ì‘¬‚³
+    public float horizontalSpeed = 2f;     // ¶‚Ö‚ÌˆÚ“®‘¬“x
+    public float floatAmplitude = 0.5f;    // ã‰º‚ÌU•
+    public float floatFrequency = 1f;      // ã‰º‚Ì‘¬‚³
 
     private Vector3 startPos;
+    private Collider enemyCollider;        // ©•ª‚ÌColliderQÆ
 
     void Start()
     {
         startPos = transform.position;
+        enemyCollider = GetComponent<Collider>();
+
+        if (enemyCollider == null)
+        {
+            Debug.LogWarning("Collider ‚ªŒ©‚Â‚©‚è‚Ü‚¹‚ñB");
+        }
     }
 
     void Update()
@@ -28,7 +35,22 @@ public class EnemyMove3 : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Destroy(gameObject);
+            // ˆê“I‚É“–‚½‚è”»’è‚ğ–³Œø‰»
+            if (enemyCollider != null)
+            {
+                enemyCollider.enabled = false;
+                Invoke(nameof(EnableCollider), 3f); // 2•bŒã‚ÉÄ—LŒø‰»
+            }
+
+            //Destroy(gameObject); // “G‚Í”j‰ó‚µ‚È‚¢
+        }
+    }
+
+    void EnableCollider()
+    {
+        if (enemyCollider != null)
+        {
+            enemyCollider.enabled = true;
         }
     }
 }
