@@ -52,7 +52,7 @@ public class ScoreManager : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Enemy1") || other.CompareTag("Enemy2"))
+        if (other.CompareTag("Enemy1") )
         {
             score -= 150;
             UpdateScoreText();
