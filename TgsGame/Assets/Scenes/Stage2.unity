@@ -5075,7 +5075,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7122614677902878018, guid: 997eeecd0ea55e043b050bd64c484ccc, type: 3}
       propertyPath: speed
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8978659142874513092, guid: 997eeecd0ea55e043b050bd64c484ccc, type: 3}
       propertyPath: m_LocalPosition.x
@@ -6552,7 +6552,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7122614677902878018, guid: 997eeecd0ea55e043b050bd64c484ccc, type: 3}
       propertyPath: speed
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8978659142874513092, guid: 997eeecd0ea55e043b050bd64c484ccc, type: 3}
       propertyPath: m_LocalPosition.x
@@ -7131,7 +7131,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7122614677902878018, guid: 997eeecd0ea55e043b050bd64c484ccc, type: 3}
       propertyPath: speed
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8978659142874513092, guid: 997eeecd0ea55e043b050bd64c484ccc, type: 3}
       propertyPath: m_LocalPosition.x
@@ -9220,7 +9220,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7122614677902878018, guid: 997eeecd0ea55e043b050bd64c484ccc, type: 3}
       propertyPath: speed
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8978659142874513092, guid: 997eeecd0ea55e043b050bd64c484ccc, type: 3}
       propertyPath: m_LocalPosition.x
@@ -9605,11 +9605,11 @@ PrefabInstance:
     - target: {fileID: 2600705153310143841, guid: 740023b7312386a4882d575d8d2c673a, type: 3}
       propertyPath: m_Resource
       value: 
-      objectReference: {fileID: 8300000, guid: e7b8af293a50b4848968478b0ad2d0b1, type: 3}
+      objectReference: {fileID: 8300000, guid: a069de33247de774998a81642bd030c3, type: 3}
     - target: {fileID: 2600705153310143841, guid: 740023b7312386a4882d575d8d2c673a, type: 3}
       propertyPath: m_audioClip
       value: 
-      objectReference: {fileID: 8300000, guid: e7b8af293a50b4848968478b0ad2d0b1, type: 3}
+      objectReference: {fileID: 8300000, guid: a069de33247de774998a81642bd030c3, type: 3}
     - target: {fileID: 7388639194653007320, guid: 740023b7312386a4882d575d8d2c673a, type: 3}
       propertyPath: m_LocalPosition.x
       value: -17.680325
