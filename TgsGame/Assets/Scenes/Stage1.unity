@@ -27632,6 +27632,18 @@ PrefabInstance:
       propertyPath: ShapeModule.m_Scale.y
       value: 0.01
       objectReference: {fileID: 0}
+    - target: {fileID: 4788138957832864726, guid: 6f600eb69e4bde54992d9b04e0517996, type: 3}
+      propertyPath: InitialModule.startSpeed.scalar
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4788138957832864726, guid: 6f600eb69e4bde54992d9b04e0517996, type: 3}
+      propertyPath: EmissionModule.rateOverTime.scalar
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 4788138957832864726, guid: 6f600eb69e4bde54992d9b04e0517996, type: 3}
+      propertyPath: InitialModule.startSpeed.minMaxState
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

@@ -5545,7 +5545,7 @@ PrefabInstance:
     - target: {fileID: 4261261909741510748, guid: bdafc2819a71a8e4284a122fe3c43b3e, type: 3}
       propertyPath: healSE
       value: 
-      objectReference: {fileID: 8300000, guid: 8c539b59063650a459ab3006a5a0559f, type: 3}
+      objectReference: {fileID: 8300000, guid: 51c644e2a3d708f4896ede2b413623f7, type: 3}
     - target: {fileID: 4261261909741510748, guid: bdafc2819a71a8e4284a122fe3c43b3e, type: 3}
       propertyPath: itemSE
       value: 
