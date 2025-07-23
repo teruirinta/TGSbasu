@@ -1,36 +1,28 @@
 using UnityEngine;
-
 public class EnemyMove3 : MonoBehaviour
 {
     public float horizontalSpeed = 2f;     // ¶‚Ö‚ÌˆÚ“®‘¬“x
     public float floatAmplitude = 0.5f;    // ã‰º‚ÌU•
     public float floatFrequency = 1f;      // ã‰º‚Ì‘¬‚³
-
     private Vector3 startPos;
     private Collider enemyCollider;        // ©•ª‚ÌColliderQÆ
-
     void Start()
     {
         startPos = transform.position;
         enemyCollider = GetComponent<Collider>();
-
         if (enemyCollider == null)
         {
             Debug.LogWarning("Collider ‚ªŒ©‚Â‚©‚è‚Ü‚¹‚ñB");
         }
     }
-
     void Update()
     {
         // ¶‚ÖˆÚ“®
         float newX = transform.position.x - horizontalSpeed * Time.deltaTime;
-
         // ã‰º‚É‚Ó‚í‚Ó‚í“®‚­iƒTƒCƒ“”gj
         float newY = startPos.y + Mathf.Sin(Time.time * floatFrequency) * floatAmplitude;
-
         transform.position = new Vector3(newX, newY, transform.position.z);
     }
-
     void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
@@ -39,13 +31,11 @@ public class EnemyMove3 : MonoBehaviour
             if (enemyCollider != null)
             {
                 enemyCollider.enabled = false;
-                Invoke(nameof(EnableCollider), 3f); // 2•bŒã‚ÉÄ—LŒø‰»
+                Invoke(nameof(EnableCollider), 2f); // 2•bŒã‚ÉÄ—LŒø‰»
             }
-
             //Destroy(gameObject); // “G‚Í”j‰ó‚µ‚È‚¢
         }
     }
-
     void EnableCollider()
     {
         if (enemyCollider != null)
