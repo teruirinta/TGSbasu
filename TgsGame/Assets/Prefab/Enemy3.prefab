@@ -219,10 +219,6 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: -3540725318260445992, guid: 50eedfb0e48329242becd4e1fe646911, type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
-      value: 
-      objectReference: {fileID: 2100000, guid: 52c255e1f015aac40a1a1451c6ddfa98, type: 2}
     - target: {fileID: 919132149155446097, guid: 50eedfb0e48329242becd4e1fe646911, type: 3}
       propertyPath: m_Name
       value: dankuruanimeswim
