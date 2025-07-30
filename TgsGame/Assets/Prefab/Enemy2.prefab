@@ -133,8 +133,6 @@ MonoBehaviour:
   speed: 2
   flowSpeed: 2
   stopDistance: 0
-  floatAmplitude: 0.5
-  floatFrequency: 1
 --- !u!136 &3493178035959818098
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -222,6 +220,10 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 0d7b2af88cf16b542a0982dd5bfc2554, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 8c95fa7c36e011c4e9a7f055d6fae3b1, type: 2}
     - target: {fileID: 919132149155446097, guid: 0d7b2af88cf16b542a0982dd5bfc2554, type: 3}
       propertyPath: m_Name
       value: ika
