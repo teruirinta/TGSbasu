@@ -136,7 +136,6 @@ MonoBehaviour:
   yThreshold: 2
   xThreshold: 4
   swimSoundClip: {fileID: 8300000, guid: 7f64d21c4aabe4e4d8fd25338be4aba2, type: 3}
-  alertIconPrefab: {fileID: 2379473007496516408, guid: 6a9492a7df6ce7843abef0febd05f2cb, type: 3}
 --- !u!136 &260410416106207510
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -559,7 +558,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 5561349426305759274, guid: 04f9ceb28e909bc41b0faaef42f24b1d, type: 3}
+  - {fileID: 2100000, guid: e6ebbc7f42c5096449af0972bd9b9e2f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

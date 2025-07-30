@@ -17,6 +17,8 @@ GameObject:
   - component: {fileID: 1528232607495603436}
   - component: {fileID: 4261261909741510748}
   - component: {fileID: 5416914368461618122}
+  - component: {fileID: 7208794669181705182}
+  - component: {fileID: 3975498649072656570}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -161,6 +163,8 @@ MonoBehaviour:
   staminaSlider: {fileID: 0}
   particleEffectPrefab: {fileID: 9057914743139324598, guid: 3c9dd3bba7fd7cb4791fa05de169c482, type: 3}
   maxHP: 5
+  blinkDuration: 2
+  blinkInterval: 0.2
 --- !u!114 &1528232607495603436
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -214,6 +218,44 @@ MonoBehaviour:
   fallSpeed: 0.1
   startMoveSpeed: 2
   startMoveDuration: 1.5
+--- !u!95 &7208794669181705182
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7824125225552990112}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!111 &3975498649072656570
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7824125225552990112}
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Animation: {fileID: 1827226128182048838, guid: 3853a7bfeda98e24da553a8367168bc8, type: 3}
+  m_Animations: []
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_UpdateMode: 0
+  m_CullingType: 0
 --- !u!1001 &2546526418833740714
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -285,6 +327,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: ebca18607851c774e8c3fe87d662b628, type: 3}
       propertyPath: m_Name
       value: basu1 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: ebca18607851c774e8c3fe87d662b628, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4694512719869544682, guid: ebca18607851c774e8c3fe87d662b628, type: 3}
       propertyPath: m_LocalPosition.y
