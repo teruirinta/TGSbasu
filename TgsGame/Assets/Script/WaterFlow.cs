@@ -13,7 +13,27 @@ public class WaterFlow : MonoBehaviour
         if (other.tag == "Player" || other.tag == "Basu")
         {
             //プレイヤーのRigidbodyを取得
-            Rigidbody playerRigidbody = other.transform.parent.GetComponent<Rigidbody>();
+            Rigidbody playerRigidbody = other.GetComponent<Rigidbody>();
+
+            if (playerRigidbody == null)
+            {
+                playerRigidbody = other.transform.parent?.GetComponent<Rigidbody>();
+            }
+
+            if (playerRigidbody == null)
+            {
+                playerRigidbody = other.transform.root.GetComponent<Rigidbody>();
+            }
+
+            if (playerRigidbody != null)
+            {
+                playerRigidbody.velocity += velocity * Time.deltaTime;
+            }
+            else
+            {
+                Debug.LogWarning("Rigidbody が見つからなかった: " + other.name);
+            }
+
 
             //プレイヤーの動きに水流の力を加える
             playerRigidbody.linearVelocity += velocity * Time.deltaTime;

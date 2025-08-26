@@ -24673,7 +24673,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7717895303495629358, guid: bdafc2819a71a8e4284a122fe3c43b3e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.038746674
+      value: -1.383
       objectReference: {fileID: 0}
     - target: {fileID: 7717895303495629358, guid: bdafc2819a71a8e4284a122fe3c43b3e, type: 3}
       propertyPath: m_LocalPosition.z
@@ -27283,6 +27283,22 @@ PrefabInstance:
     - target: {fileID: 2697795248476351857, guid: 64d9d71ee7185044e9b52446b48bea00, type: 3}
       propertyPath: m_Name
       value: Player2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2697795248476351857, guid: 64d9d71ee7185044e9b52446b48bea00, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4335825134830248767, guid: 64d9d71ee7185044e9b52446b48bea00, type: 3}
+      propertyPath: m_IsKinematic
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7570166690891422908, guid: 64d9d71ee7185044e9b52446b48bea00, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
+    - target: {fileID: 7788401821692921022, guid: 64d9d71ee7185044e9b52446b48bea00, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 8646243620672205953, guid: 64d9d71ee7185044e9b52446b48bea00, type: 3}
       propertyPath: m_LocalPosition.x
