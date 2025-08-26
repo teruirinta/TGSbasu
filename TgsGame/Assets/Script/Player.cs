@@ -1,113 +1,83 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-
-public class Player : MonoBehaviour
+using System.Collections;
+using System.Collections.Generic;
+public class PlayerController : MonoBehaviour
 {
-    public float moveForce = 10f; // 押したときの移動力
-
-  
+    public float moveForce = 10f;
     public float recoverDelay = 2f;
     public float recoverRate = 2f;
-
     public Slider staminaSlider;
-
-    public GameObject particleEffectPrefab; // 追加：パーティクルのプレハブ
-
-   
+    public GameObject particleEffectPrefab;
     private float lastPressTime;
     private float recoverTimer;
-
     private int currentHP = 5;
     public int maxHP = 5;
-
     private Rigidbody rb;
-
-
-    Animator animator;
-    float swimAnimWeight = 0f;
-
-
-
-
-
+    public float blinkDuration = 2f;
+    public float blinkInterval = 0.2f;
+    private List<Renderer> childRenderers = new List<Renderer>();
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-       
         lastPressTime = -recoverDelay;
-
-
-        animator = transform.GetChild(0).GetComponent<Animator>();
-
+        Renderer[] allRenderers = GetComponentsInChildren<Renderer>();
+        Renderer parentRenderer = GetComponent<Renderer>();
+        foreach (Renderer r in allRenderers)
+        {
+            if (r != parentRenderer) // 親の Renderer を除外
+            {
+                childRenderers.Add(r);
+            }
+        }
+        if (childRenderers.Count == 0)
+        {
+            Debug.LogWarning("子オブジェクトの Renderer が見つかりません。点滅できません。");
+        }
     }
-
     void Update()
     {
-        // Z位置固定
         Vector3 newPosition = transform.position;
         newPosition.z = 0;
         transform.position = newPosition;
-
-        // 左スティックの入力
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
         float zRotation = transform.rotation.eulerAngles.z;
-
-
         if (horizontal != 0 || vertical != 0)
         {
             Vector2 direction = new Vector2(horizontal, vertical);
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-            Quaternion targetRotation = Quaternion.Euler(0,0, angle);
+            Quaternion targetRotation = Quaternion.Euler(0, 0, angle);
             transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, Time.deltaTime * 3f);
-
-          
         }
-
-
         if (zRotation > 90f && zRotation < 270f)
         {
             Vector3 scale = transform.localScale;
-            scale.y = -Mathf.Abs(scale.y); // Y軸を負に
+            scale.y = -Mathf.Abs(scale.y);
             transform.localScale = scale;
         }
         else
         {
             Vector3 scale = transform.localScale;
-            scale.y = Mathf.Abs(scale.y); // Y軸を正に戻す
+            scale.y = Mathf.Abs(scale.y);
             transform.localScale = scale;
         }
-
-
-
-
-        // Aボタン押した時の処理
-        if (Input.GetButtonDown("Fire1") || Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetButtonDown("Fire1"))
         {
-            
-                Vector3 forward = transform.right;
-                rb.AddForce(forward * moveForce, ForceMode.Impulse);
-
-               
-
-                // パーティクル表示（1秒で消える）
+            Vector2 inputDirection = new Vector2(horizontal, vertical);
+            if (inputDirection.magnitude > 0.1f)
+            {
+                inputDirection.Normalize();
+                Vector3 forceDirection = new Vector3(inputDirection.x, inputDirection.y, 0f);
+                rb.AddForce(forceDirection * moveForce, ForceMode.Impulse);
                 if (particleEffectPrefab != null)
                 {
                     GameObject effect = Instantiate(particleEffectPrefab, transform.position, Quaternion.identity);
-                    Destroy(effect, 1f); // 1秒後に自動削除
+                    Destroy(effect, 1f);
                 }
-
-            swimAnimWeight = 1.0f;
+            }
         }
-
-
-        //泳ぐアニメーション
-        animator.SetLayerWeight(1, swimAnimWeight);
-
-        swimAnimWeight *= 0.99f;
-
     }
-
     void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Item1"))
@@ -119,22 +89,32 @@ public class Player : MonoBehaviour
             }
             Destroy(other.gameObject);
         }
-
         if (other.CompareTag("Enemy1"))
         {
-            
             currentHP--;
             currentHP = Mathf.Clamp(currentHP, 0, maxHP);
-            
-            Destroy(other.gameObject);
+            StartCoroutine(BlinkEffect());
         }
-
         if (other.CompareTag("Item2"))
         {
-     
             Destroy(other.gameObject);
         }
-
-        
+    }
+    IEnumerator BlinkEffect()
+    {
+        float timer = 0f;
+        while (timer < blinkDuration)
+        {
+            foreach (Renderer r in childRenderers)
+            {
+                r.enabled = !r.enabled;
+            }
+            yield return new WaitForSeconds(blinkInterval);
+            timer += blinkInterval;
+        }
+        foreach (Renderer r in childRenderers)
+        {
+            r.enabled = true;
+        }
     }
 }
