@@ -2,17 +2,17 @@ using UnityEngine;
 
 public class WaterFlow : MonoBehaviour
 {
-    [SerializeField, Header("…—¬‚Ì‹­‚³")]
+    [SerializeField, Header("ï¿½ï¿½ï¿½ï¿½ï¿½Ì‹ï¿½ï¿½ï¿½")]
     Vector3 velocity = new Vector3(0, 10, 0);
 
 
-    //ÚG’†
+    //ï¿½ÚGï¿½ï¿½
     void OnTriggerStay(Collider other)
     {
-        //ÚG‚µ‚½‚Ì‚ªƒvƒŒƒCƒ„[‚¾‚Á‚½‚ç
+        //ï¿½ÚGï¿½ï¿½ï¿½ï¿½ï¿½Ì‚ï¿½ï¿½vï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         if (other.tag == "Player" || other.tag == "Basu")
         {
-            //ƒvƒŒƒCƒ„[‚ÌRigidbody‚ğæ“¾
+            //ï¿½vï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½[ï¿½ï¿½Rigidbodyï¿½ï¿½ï¿½æ“¾
             Rigidbody playerRigidbody = other.GetComponent<Rigidbody>();
 
             if (playerRigidbody == null)
@@ -27,15 +27,15 @@ public class WaterFlow : MonoBehaviour
 
             if (playerRigidbody != null)
             {
-                playerRigidbody.velocity += velocity * Time.deltaTime;
+                playerRigidbody.linearVelocity += velocity * Time.deltaTime;
             }
             else
             {
-                Debug.LogWarning("Rigidbody ‚ªŒ©‚Â‚©‚ç‚È‚©‚Á‚½: " + other.name);
+                Debug.LogWarning("Rigidbody ï¿½ï¿½ï¿½ï¿½ï¿½Â‚ï¿½ï¿½ï¿½È‚ï¿½ï¿½ï¿½ï¿½ï¿½: " + other.name);
             }
 
 
-            //ƒvƒŒƒCƒ„[‚Ì“®‚«‚É…—¬‚Ì—Í‚ğ‰Á‚¦‚é
+            //ï¿½vï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½[ï¿½Ì“ï¿½ï¿½ï¿½ï¿½Éï¿½ï¿½ï¿½ï¿½Ì—Í‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
             playerRigidbody.linearVelocity += velocity * Time.deltaTime;
         }
     }
