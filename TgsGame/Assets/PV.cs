@@ -50,7 +50,7 @@ public class PV : MonoBehaviour
         else
         {
             //âΩÇ©ÉLÅ[Ç™âüÇ≥ÇÍÇΩÇÁPVí‚é~
-            if (Input.anyKeyDown)
+            if (Input.anyKeyDown  )
             {
                 Stop(player);
             }
