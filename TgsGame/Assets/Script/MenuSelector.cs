@@ -70,7 +70,7 @@ public class MenuSelector : MonoBehaviour
         }
         else if (index == 1)
         {
-            SceneManager.LoadScene("Stage2");
+            SceneManager.LoadScene("StageNo2");
         }
     }
 
