@@ -27273,6 +27273,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 128242646}
     - target: {fileID: 964890987945311285, guid: 64d9d71ee7185044e9b52446b48bea00, type: 3}
+      propertyPath: goalTransform
+      value: 
+      objectReference: {fileID: 1026372069}
+    - target: {fileID: 964890987945311285, guid: 64d9d71ee7185044e9b52446b48bea00, type: 3}
       propertyPath: scoreUpEffectText
       value: 
       objectReference: {fileID: 2087041181}
@@ -27357,6 +27361,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 64d9d71ee7185044e9b52446b48bea00, type: 3}
+--- !u!114 &2032249958 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 964890987945311285, guid: 64d9d71ee7185044e9b52446b48bea00, type: 3}
+  m_PrefabInstance: {fileID: 2032249957}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3883945de059b2b4cba330148c56c609, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2033476215
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -27619,7 +27634,7 @@ PrefabInstance:
     - target: {fileID: 1393821384935862719, guid: 5d35a867d3c4223459578fe076b9bb53, type: 3}
       propertyPath: scoreManager
       value: 
-      objectReference: {fileID: 1870214424}
+      objectReference: {fileID: 2032249958}
     - target: {fileID: 3401005850984572119, guid: 5d35a867d3c4223459578fe076b9bb53, type: 3}
       propertyPath: m_IsTrigger
       value: 1

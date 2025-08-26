@@ -1,44 +1,51 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
+using System.Collections.Generic;
 
 public class Player : MonoBehaviour
 {
-    public float moveForce = 10f; // 押したときの移動力
-
-  
+    public float moveForce = 10f;
     public float recoverDelay = 2f;
     public float recoverRate = 2f;
-
     public Slider staminaSlider;
+    public GameObject particleEffectPrefab;
 
-    public GameObject particleEffectPrefab; // 追加：パーティクルのプレハブ
+    public int maxHP = 5;
+    private int currentHP = 5;
 
-   
     private float lastPressTime;
     private float recoverTimer;
 
-    private int currentHP = 5;
-    public int maxHP = 5;
-
     private Rigidbody rb;
+    private Animator animator;
+    private float swimAnimWeight = 0f;
 
-
-    Animator animator;
-    float swimAnimWeight = 0f;
-
-
-
-
+    public float blinkDuration = 2f;
+    public float blinkInterval = 0.2f;
+    private List<Renderer> childRenderers = new List<Renderer>();
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-       
         lastPressTime = -recoverDelay;
-
 
         animator = transform.GetChild(0).GetComponent<Animator>();
 
+        Renderer[] allRenderers = GetComponentsInChildren<Renderer>();
+        Renderer parentRenderer = GetComponent<Renderer>();
+        foreach (Renderer r in allRenderers)
+        {
+            if (r != parentRenderer)
+            {
+                childRenderers.Add(r);
+            }
+        }
+
+        if (childRenderers.Count == 0)
+        {
+            Debug.LogWarning("子オブジェクトの Renderer が見つかりません。点滅できません。");
+        }
     }
 
     void Update()
@@ -48,64 +55,51 @@ public class Player : MonoBehaviour
         newPosition.z = 0;
         transform.position = newPosition;
 
-        // 左スティックの入力
+        // 入力取得
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
         float zRotation = transform.rotation.eulerAngles.z;
 
-
+        // 回転処理
         if (horizontal != 0 || vertical != 0)
         {
             Vector2 direction = new Vector2(horizontal, vertical);
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-            Quaternion targetRotation = Quaternion.Euler(0,0, angle);
+            Quaternion targetRotation = Quaternion.Euler(0, 0, angle);
             transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, Time.deltaTime * 3f);
-
-          
         }
 
+        // Y軸反転処理
+        Vector3 scale = transform.localScale;
+        scale.y = (zRotation > 90f && zRotation < 270f) ? -Mathf.Abs(scale.y) : Mathf.Abs(scale.y);
+        transform.localScale = scale;
 
-        if (zRotation > 90f && zRotation < 270f)
-        {
-            Vector3 scale = transform.localScale;
-            scale.y = -Mathf.Abs(scale.y); // Y軸を負に
-            transform.localScale = scale;
-        }
-        else
-        {
-            Vector3 scale = transform.localScale;
-            scale.y = Mathf.Abs(scale.y); // Y軸を正に戻す
-            transform.localScale = scale;
-        }
-
-
-
-
-        // Aボタン押した時の処理
+        // Aボタン（またはスペースキー）で移動
         if (Input.GetButtonDown("Fire1") || Input.GetKeyDown(KeyCode.Space))
         {
-            
-                Vector3 forward = transform.right;
-                rb.AddForce(forward * moveForce, ForceMode.Impulse);
+            Vector2 inputDirection = new Vector2(horizontal, vertical);
+            if (inputDirection.magnitude > 0.1f)
+            {
+                inputDirection.Normalize();
+                Vector3 forceDirection = new Vector3(inputDirection.x, inputDirection.y, 0f);
+                rb.AddForce(forceDirection * moveForce, ForceMode.Impulse);
 
-               
-
-                // パーティクル表示（1秒で消える）
                 if (particleEffectPrefab != null)
                 {
                     GameObject effect = Instantiate(particleEffectPrefab, transform.position, Quaternion.identity);
-                    Destroy(effect, 1f); // 1秒後に自動削除
+                    Destroy(effect, 1f);
                 }
 
-            swimAnimWeight = 1.0f;
+                swimAnimWeight = 1.0f;
+            }
         }
 
-
-        //泳ぐアニメーション
-        animator.SetLayerWeight(1, swimAnimWeight);
-
-        swimAnimWeight *= 0.99f;
-
+        // 泳ぐアニメーション
+        if (animator != null)
+        {
+            animator.SetLayerWeight(1, swimAnimWeight);
+            swimAnimWeight *= 0.99f;
+        }
     }
 
     void OnTriggerEnter(Collider other)
@@ -122,19 +116,34 @@ public class Player : MonoBehaviour
 
         if (other.CompareTag("Enemy1"))
         {
-            
             currentHP--;
             currentHP = Mathf.Clamp(currentHP, 0, maxHP);
+            StartCoroutine(BlinkEffect());
             
-            Destroy(other.gameObject);
         }
 
         if (other.CompareTag("Item2"))
         {
-     
             Destroy(other.gameObject);
         }
+    }
 
-        
+    IEnumerator BlinkEffect()
+    {
+        float timer = 0f;
+        while (timer < blinkDuration)
+        {
+            foreach (Renderer r in childRenderers)
+            {
+                r.enabled = !r.enabled;
+            }
+            yield return new WaitForSeconds(blinkInterval);
+            timer += blinkInterval;
+        }
+
+        foreach (Renderer r in childRenderers)
+        {
+            r.enabled = true;
+        }
     }
 }

@@ -295,8 +295,12 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3062055781258138785, guid: 343cd85c8dde28f4a9c7ce9458ff6a4d, type: 3}
+      propertyPath: canvas
+      value: 
+      objectReference: {fileID: 949873545}
+    - target: {fileID: 3062055781258138785, guid: 343cd85c8dde28f4a9c7ce9458ff6a4d, type: 3}
       propertyPath: waitTime
-      value: 10
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7252131943932004564, guid: 343cd85c8dde28f4a9c7ce9458ff6a4d, type: 3}
       propertyPath: m_Name
@@ -524,6 +528,11 @@ Transform:
 --- !u!224 &893624682 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3485005065689023707, guid: 45e87ea62d361a948ab4a823c76f6da3, type: 3}
+  m_PrefabInstance: {fileID: 8098915695765572319}
+  m_PrefabAsset: {fileID: 0}
+--- !u!223 &949873545 stripped
+Canvas:
+  m_CorrespondingSourceObject: {fileID: 4713315530831570279, guid: 45e87ea62d361a948ab4a823c76f6da3, type: 3}
   m_PrefabInstance: {fileID: 8098915695765572319}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &952374400
