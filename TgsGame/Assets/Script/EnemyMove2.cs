@@ -22,25 +22,31 @@ public class EnemyMove2 : MonoBehaviour
     void Update()
     {
         if (player == null) return;
+
+        // プレイヤーとの方向と距離を取得
         Vector3 directionToPlayer = player.position - transform.position;
         float distanceToPlayer = directionToPlayer.magnitude;
+        Vector3 direction = directionToPlayer.normalized;
+
+        // 回転だけは常にプレイヤーの方向へ
+        if (direction.x != 0 || direction.y != 0)
+        {
+            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+            Quaternion targetRotation = Quaternion.Euler(0, 0, angle);
+            transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, 5f * Time.deltaTime); // ゆっくり回転
+        }
+
+        // 移動処理（プレイヤーより右にいるときだけ追尾）
         if (transform.position.x > player.position.x)
         {
             if (distanceToPlayer > stopDistance)
             {
-                Vector3 direction = directionToPlayer.normalized;
                 transform.position += direction * speed * Time.deltaTime;
-                if (direction.x != 0)
-                {
-                    float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-                    transform.rotation = Quaternion.Euler(0, 0, angle);
-                }
             }
         }
         else
         {
             transform.position += new Vector3(-flowSpeed * Time.deltaTime, 0, 0);
-            transform.rotation = Quaternion.Euler(0, 0, 180);
         }
     }
     void OnTriggerEnter(Collider other)
