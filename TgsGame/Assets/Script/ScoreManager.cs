@@ -6,34 +6,21 @@ public class ScoreManager : MonoBehaviour
 {
     public int score = 0;
     public TextMeshProUGUI scoreText;
-    public TextMeshProUGUI scoreUpEffectText;
-    public TextMeshProUGUI scoreDownEffectText;
+
+    [Header("スコアポップアップ用")]
+    public GameObject scorePopupPrefab; // ワールド空間用TextMeshProプレハブ
 
     private float timeCounter = 0f;
-
-    // 合算表示用
-    private int currentUpTotal = 0;
-    private int currentDownTotal = 0;
-    private Coroutine upCoroutine = null;
-    private Coroutine downCoroutine = null;
     public bool isGoalReached = false;
-
     [SerializeField] private Transform goalTransform;
 
     void Start()
     {
         UpdateScoreText();
-
-        // 初期化
-        scoreUpEffectText.text = "";
-        scoreUpEffectText.alpha = 0f;
-        scoreDownEffectText.text = "";
-        scoreDownEffectText.alpha = 0f;
     }
 
     void Update()
     {
-
         if (goalTransform != null && goalTransform.position.x <= 0.5f)
         {
             return; // ゴールのXが0.5以下ならスコア加算を停止
@@ -47,62 +34,33 @@ public class ScoreManager : MonoBehaviour
             timeCounter = 0f;
             UpdateScoreText();
         }
-
     }
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Enemy1") )
+        if (other.CompareTag("Enemy1"))
         {
             score -= 150;
             UpdateScoreText();
-
-            currentDownTotal -= 150; // -150ずつ減る（マイナス表示）
-
-            if (downCoroutine != null)
-            {
-                StopCoroutine(downCoroutine);
-            }
-            downCoroutine = StartCoroutine(ShowDownEffect());
+            ShowScorePopup(other.transform.position, -150, Color.red);
         }
         else if (other.CompareTag("ItemScore"))
         {
             score += 500;
             UpdateScoreText();
-
-            currentUpTotal += 500;
-
-            if (upCoroutine != null)
-            {
-                StopCoroutine(upCoroutine);
-            }
-            upCoroutine = StartCoroutine(ShowUpEffect());
+            ShowScorePopup(other.transform.position, 500, Color.green);
         }
         else if (other.CompareTag("Item1"))
         {
             score += 200;
             UpdateScoreText();
-
-            currentUpTotal += 200;
-
-            if (upCoroutine != null)
-            {
-                StopCoroutine(upCoroutine);
-            }
-            upCoroutine = StartCoroutine(ShowUpEffect());
+            ShowScorePopup(other.transform.position, 200, Color.green);
         }
         else if (other.CompareTag("Item2"))
         {
             score += 100;
             UpdateScoreText();
-
-            currentUpTotal += 100;
-
-            if (upCoroutine != null)
-            {
-                StopCoroutine(upCoroutine);
-            }
-            upCoroutine = StartCoroutine(ShowUpEffect());
+            ShowScorePopup(other.transform.position, 100, Color.green);
         }
     }
 
@@ -114,31 +72,37 @@ public class ScoreManager : MonoBehaviour
         }
     }
 
-    IEnumerator ShowUpEffect()
+    void ShowScorePopup(Vector3 position, int amount, Color color)
     {
-        scoreUpEffectText.text = "+" + currentUpTotal.ToString();
-        scoreUpEffectText.color = Color.green;
-        scoreUpEffectText.alpha = 1f;
+        GameObject popup = Instantiate(scorePopupPrefab, position + Vector3.up * 0.5f, Quaternion.identity);
+        TextMeshPro tmp = popup.GetComponent<TextMeshPro>();
+        if (tmp != null)
+        {
+            tmp.text = (amount > 0 ? "+" : "") + amount.ToString();
+            tmp.color = color;
+        }
 
-        yield return new WaitForSeconds(1f);
-
-        currentUpTotal = 0;
-        scoreUpEffectText.text = "";
-        scoreUpEffectText.alpha = 0f;
-        upCoroutine = null;
+        StartCoroutine(PopupFadeOut(popup));
     }
 
-    IEnumerator ShowDownEffect()
+    IEnumerator PopupFadeOut(GameObject popup)
     {
-        scoreDownEffectText.text = currentDownTotal.ToString(); // マイナス値がそのまま表示される
-        scoreDownEffectText.color = Color.red;
-        scoreDownEffectText.alpha = 1f;
+        float duration = 1f;
+        float time = 0f;
+        Vector3 startPos = popup.transform.position;
+        Vector3 endPos = startPos + Vector3.up * 1f;
 
-        yield return new WaitForSeconds(1f);
+        TextMeshPro tmp = popup.GetComponent<TextMeshPro>();
+        Color originalColor = tmp.color;
 
-        currentDownTotal = 0;
-        scoreDownEffectText.text = "";
-        scoreDownEffectText.alpha = 0f;
-        downCoroutine = null;
+        while (time < duration)
+        {
+            popup.transform.position = Vector3.Lerp(startPos, endPos, time / duration);
+            tmp.color = Color.Lerp(originalColor, new Color(originalColor.r, originalColor.g, originalColor.b, 0), time / duration);
+            time += Time.deltaTime;
+            yield return null;
+        }
+
+        Destroy(popup);
     }
 }
