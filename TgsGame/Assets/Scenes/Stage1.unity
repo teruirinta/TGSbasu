@@ -27277,6 +27277,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1026372069}
     - target: {fileID: 964890987945311285, guid: 64d9d71ee7185044e9b52446b48bea00, type: 3}
+      propertyPath: scorePopupPrefab
+      value: 
+      objectReference: {fileID: 1680032993267928472, guid: ca86b747099782243b0e93bb7d105870, type: 3}
+    - target: {fileID: 964890987945311285, guid: 64d9d71ee7185044e9b52446b48bea00, type: 3}
       propertyPath: scoreUpEffectText
       value: 
       objectReference: {fileID: 2087041181}
