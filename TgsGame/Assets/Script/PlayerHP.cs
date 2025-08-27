@@ -18,6 +18,11 @@ public class PlayerHP : MonoBehaviour
     public AudioClip scoreSE;
     public AudioSource audioSource;
 
+    [Header("Effect Prefabs")]
+    public GameObject item1Effect;   // Item1エフェクト
+    public GameObject item2Effect;   // Item2エフェクト
+    public GameObject scoreUpEffect; // Scoreエフェクト
+
     // 無敵時間関連
     private bool isInvincible = false;
     private float invincibleDuration = 2.5f;
@@ -53,27 +58,28 @@ public class PlayerHP : MonoBehaviour
                 isInvincible = true;
                 invincibleTimer = invincibleDuration;
             }
-
-            //Destroy(other.gameObject); // 敵は破壊しない
         }
 
         if (other.CompareTag("Item1"))
         {
             PlaySE(healSE);
             Heal(1);
+            SpawnEffect(item1Effect); // ← エフェクト出す
             Destroy(other.gameObject, 0.1f);
         }
 
         if (other.CompareTag("Item2"))
         {
             PlaySE(healSE);
+            SpawnEffect(item2Effect); // ← エフェクト出す
             Destroy(other.gameObject, 0.1f);
         }
 
         if (other.CompareTag("ItemScore"))
         {
             PlaySE(scoreSE);
-            Destroy(other.gameObject);
+            SpawnEffect(scoreUpEffect); // ← エフェクト出す
+            Destroy(other.gameObject, 0.1f);
         }
     }
 
@@ -110,7 +116,7 @@ public class PlayerHP : MonoBehaviour
     {
         for (int i = 0; i < hearts.Length; i++)
         {
-            if (i >= maxHP - currentHP)
+            if (i < currentHP)
                 hearts[i].sprite = fullHeart;
             else
                 hearts[i].sprite = emptyHeart;
@@ -123,5 +129,14 @@ public class PlayerHP : MonoBehaviour
         {
             audioSource.PlayOneShot(clip);
         }
+    }
+
+    // 共通エフェクト処理
+    void SpawnEffect(GameObject effectPrefab)
+    {
+        if (effectPrefab == null) return;
+
+        GameObject effect = Instantiate(effectPrefab, transform.position, Quaternion.identity);
+        Destroy(effect, 1f); // 1秒後に削除
     }
 }
