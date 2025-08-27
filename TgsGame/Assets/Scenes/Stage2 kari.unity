@@ -2689,6 +2689,30 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2954904323563220111, guid: 39e9dd893498cf543853a0dff8003cb4, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 5ca16e6e5129ae44f8e1dac91b428eb4, type: 2}
+    - target: {fileID: 2954904323563220111, guid: 39e9dd893498cf543853a0dff8003cb4, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -8081874127089672643, guid: 5ca16e6e5129ae44f8e1dac91b428eb4, type: 2}
+    - target: {fileID: 2954904323563220111, guid: 39e9dd893498cf543853a0dff8003cb4, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5077071679854381044, guid: 39e9dd893498cf543853a0dff8003cb4, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 5ca16e6e5129ae44f8e1dac91b428eb4, type: 2}
+    - target: {fileID: 5077071679854381044, guid: 39e9dd893498cf543853a0dff8003cb4, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -8081874127089672643, guid: 5ca16e6e5129ae44f8e1dac91b428eb4, type: 2}
+    - target: {fileID: 5077071679854381044, guid: 39e9dd893498cf543853a0dff8003cb4, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5635796743722856023, guid: 39e9dd893498cf543853a0dff8003cb4, type: 3}
       propertyPath: m_Name
       value: NewCanvasDayo
@@ -2780,11 +2804,11 @@ PrefabInstance:
     - target: {fileID: 8138810171881650834, guid: 39e9dd893498cf543853a0dff8003cb4, type: 3}
       propertyPath: m_fontAsset
       value: 
-      objectReference: {fileID: 11400000, guid: 324ebd270579a314597edefa33a52861, type: 2}
+      objectReference: {fileID: 11400000, guid: 5ca16e6e5129ae44f8e1dac91b428eb4, type: 2}
     - target: {fileID: 8138810171881650834, guid: 39e9dd893498cf543853a0dff8003cb4, type: 3}
       propertyPath: m_sharedMaterial
       value: 
-      objectReference: {fileID: 7381264324779724228, guid: 324ebd270579a314597edefa33a52861, type: 2}
+      objectReference: {fileID: -8081874127089672643, guid: 5ca16e6e5129ae44f8e1dac91b428eb4, type: 2}
     - target: {fileID: 8138810171881650834, guid: 39e9dd893498cf543853a0dff8003cb4, type: 3}
       propertyPath: m_hasFontAssetChanged
       value: 0
