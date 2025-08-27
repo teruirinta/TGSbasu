@@ -27345,6 +27345,30 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8733515811316264474, guid: 64d9d71ee7185044e9b52446b48bea00, type: 3}
+      propertyPath: item1Effect
+      value: 
+      objectReference: {fileID: 3935327252410687746, guid: 20e29d24395878645a98d4cd2ec4fbd4, type: 3}
+    - target: {fileID: 8733515811316264474, guid: 64d9d71ee7185044e9b52446b48bea00, type: 3}
+      propertyPath: item2Effect
+      value: 
+      objectReference: {fileID: 8057329672888845340, guid: b493233392cfd65429bfebd131054f00, type: 3}
+    - target: {fileID: 8733515811316264474, guid: 64d9d71ee7185044e9b52446b48bea00, type: 3}
+      propertyPath: scoreUpEffect
+      value: 
+      objectReference: {fileID: 1844657278483113614, guid: fc86210589e5cf3489c73b9fb7726317, type: 3}
+    - target: {fileID: 8733515811316264474, guid: 64d9d71ee7185044e9b52446b48bea00, type: 3}
+      propertyPath: item1EffectPrefab
+      value: 
+      objectReference: {fileID: 3935327252410687746, guid: 20e29d24395878645a98d4cd2ec4fbd4, type: 3}
+    - target: {fileID: 8733515811316264474, guid: 64d9d71ee7185044e9b52446b48bea00, type: 3}
+      propertyPath: item2EffectPrefab
+      value: 
+      objectReference: {fileID: 1844657278483113614, guid: fc86210589e5cf3489c73b9fb7726317, type: 3}
+    - target: {fileID: 8733515811316264474, guid: 64d9d71ee7185044e9b52446b48bea00, type: 3}
+      propertyPath: scoreUpEffectPrefab
+      value: 
+      objectReference: {fileID: 8057329672888845340, guid: b493233392cfd65429bfebd131054f00, type: 3}
+    - target: {fileID: 8733515811316264474, guid: 64d9d71ee7185044e9b52446b48bea00, type: 3}
       propertyPath: 'hearts.Array.data[0]'
       value: 
       objectReference: {fileID: 1492407808}
