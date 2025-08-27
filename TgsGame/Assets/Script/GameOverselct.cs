@@ -67,11 +67,13 @@ public class GameOverselct : MonoBehaviour
         if (index == 0)
         {
             string previousScene = PlayerPrefs.GetString("PreviousScene", "title");
-            SceneManager.LoadScene(previousScene);
+            FadeManager.Instance.LoadScene(previousScene, 1.0f);
+            //SceneManager.LoadScene(previousScene);
         }
         else if (index == 1)
         {
-            SceneManager.LoadScene("title");
+            FadeManager.Instance.LoadScene("title", 1.0f);
+            //SceneManager.LoadScene("title");
         }
     }
 

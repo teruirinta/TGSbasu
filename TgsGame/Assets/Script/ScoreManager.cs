@@ -72,9 +72,11 @@ public class ScoreManager : MonoBehaviour
         }
     }
 
+
     void ShowScorePopup(Vector3 position, int amount, Color color)
     {
-        GameObject popup = Instantiate(scorePopupPrefab, position + Vector3.up * 0.5f, Quaternion.identity);
+        Vector3 offset = new Vector3(0.5f, 1f, 0f); // 右上にオフセット
+        GameObject popup = Instantiate(scorePopupPrefab, position + offset, Quaternion.identity);
         TextMeshPro tmp = popup.GetComponent<TextMeshPro>();
         if (tmp != null)
         {
@@ -84,6 +86,7 @@ public class ScoreManager : MonoBehaviour
 
         StartCoroutine(PopupFadeOut(popup));
     }
+
 
     IEnumerator PopupFadeOut(GameObject popup)
     {

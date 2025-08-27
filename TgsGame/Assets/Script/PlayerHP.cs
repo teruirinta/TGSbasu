@@ -109,7 +109,8 @@ public class PlayerHP : MonoBehaviour
     void Die()
     {
         PlayerPrefs.SetString("PreviousScene", SceneManager.GetActiveScene().name);
-        SceneManager.LoadScene("GameOver");
+        FadeManager.Instance.LoadScene("GameOver", 1.0f);
+        //SceneManager.LoadScene("GameOver");
     }
 
     void UpdateHearts()

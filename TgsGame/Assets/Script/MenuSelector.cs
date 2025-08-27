@@ -66,11 +66,13 @@ public class MenuSelector : MonoBehaviour
 
         if (index == 0)
         {
-            SceneManager.LoadScene("Stage1");
+            FadeManager.Instance.LoadScene("Stage1", 1.0f);
+            //SceneManager.LoadScene("Stage1");
         }
         else if (index == 1)
         {
-            SceneManager.LoadScene("StageNo2");
+            FadeManager.Instance.LoadScene("StageNo2", 1.0f);
+            //SceneManager.LoadScene("StageNo2");
         }
     }
 

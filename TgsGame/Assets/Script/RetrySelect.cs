@@ -66,11 +66,13 @@ public class RetrySelect : MonoBehaviour
 
         if (index == 0)
         {
-            SceneManager.LoadScene("Stage1");
+            FadeManager.Instance.LoadScene("Stage1", 1.0f);
+            //SceneManager.LoadScene("Stage1");
         }
         else if (index == 1)
         {
-            SceneManager.LoadScene("title");
+            FadeManager.Instance.LoadScene("title", 1.0f);
+            //SceneManager.LoadScene("title");
         }
     }
 
