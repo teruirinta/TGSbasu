@@ -164,6 +164,7 @@ MonoBehaviour:
   maxHP: 5
   blinkDuration: 2
   blinkInterval: 0.2
+  swimSound: {fileID: 0}
 --- !u!114 &685282531490256449
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -229,7 +230,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8185116350798068883}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
