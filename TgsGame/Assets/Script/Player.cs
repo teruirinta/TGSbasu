@@ -25,6 +25,11 @@ public class Player : MonoBehaviour
     public float blinkInterval = 0.2f;
     private List<Renderer> childRenderers = new List<Renderer>();
 
+    [Header("Sound Settings")]
+    public AudioClip swimSound;   // ← 再生するサウンドをインスペクターで指定
+    private AudioSource audioSource;
+    private Coroutine stopSoundCoroutine;
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -46,6 +51,10 @@ public class Player : MonoBehaviour
         {
             Debug.LogWarning("子オブジェクトの Renderer が見つかりません。点滅できません。");
         }
+
+        // AudioSource セットアップ
+        audioSource = gameObject.AddComponent<AudioSource>();
+        audioSource.loop = false;
     }
 
     void Update()
@@ -74,7 +83,7 @@ public class Player : MonoBehaviour
         scale.y = (zRotation > 90f && zRotation < 270f) ? -Mathf.Abs(scale.y) : Mathf.Abs(scale.y);
         transform.localScale = scale;
 
-        // Aボタン（またはスペースキー）で移動
+        // Aボタン（またはスペースキー）で移動 ＋ サウンド再生
         if (Input.GetButtonDown("Fire1") || Input.GetKeyDown(KeyCode.Space))
         {
             Vector2 inputDirection = new Vector2(horizontal, vertical);
@@ -91,6 +100,12 @@ public class Player : MonoBehaviour
                 }
 
                 swimAnimWeight = 1.0f;
+
+                // サウンド再生
+                if (swimSound != null)
+                {
+                    PlaySwimSound();
+                }
             }
         }
 
@@ -100,6 +115,30 @@ public class Player : MonoBehaviour
             animator.SetLayerWeight(1, swimAnimWeight);
             swimAnimWeight *= 0.99f;
         }
+    }
+
+    void PlaySwimSound()
+    {
+        if (!audioSource.isPlaying)
+        {
+            audioSource.clip = swimSound;
+            audioSource.Play();
+        }
+
+        // すでに停止コルーチンが動いてたら止める
+        if (stopSoundCoroutine != null)
+        {
+            StopCoroutine(stopSoundCoroutine);
+        }
+        // 1秒後に停止
+        stopSoundCoroutine = StartCoroutine(StopSoundAfterDelay(1f));
+    }
+
+    IEnumerator StopSoundAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        audioSource.Stop();
+        stopSoundCoroutine = null;
     }
 
     void OnTriggerEnter(Collider other)
@@ -119,7 +158,6 @@ public class Player : MonoBehaviour
             currentHP--;
             currentHP = Mathf.Clamp(currentHP, 0, maxHP);
             StartCoroutine(BlinkEffect());
-            
         }
 
         if (other.CompareTag("Item2"))

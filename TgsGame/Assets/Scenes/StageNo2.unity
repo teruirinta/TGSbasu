@@ -8792,6 +8792,18 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 1900317657328322936, guid: a1c49a84019227e48a27c144af4fc8b6, type: 3}
+      propertyPath: item1Effect
+      value: 
+      objectReference: {fileID: 3935327252410687746, guid: 20e29d24395878645a98d4cd2ec4fbd4, type: 3}
+    - target: {fileID: 1900317657328322936, guid: a1c49a84019227e48a27c144af4fc8b6, type: 3}
+      propertyPath: item2Effect
+      value: 
+      objectReference: {fileID: 8057329672888845340, guid: b493233392cfd65429bfebd131054f00, type: 3}
+    - target: {fileID: 1900317657328322936, guid: a1c49a84019227e48a27c144af4fc8b6, type: 3}
+      propertyPath: scoreUpEffect
+      value: 
+      objectReference: {fileID: 1844657278483113614, guid: fc86210589e5cf3489c73b9fb7726317, type: 3}
+    - target: {fileID: 1900317657328322936, guid: a1c49a84019227e48a27c144af4fc8b6, type: 3}
       propertyPath: 'hearts.Array.data[0]'
       value: 
       objectReference: {fileID: 2056009308}
@@ -8803,6 +8815,18 @@ PrefabInstance:
       propertyPath: 'hearts.Array.data[2]'
       value: 
       objectReference: {fileID: 630874820}
+    - target: {fileID: 5077530390135568203, guid: a1c49a84019227e48a27c144af4fc8b6, type: 3}
+      propertyPath: swimSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 5635d63017db20c4aa7509eb846840d2, type: 3}
+    - target: {fileID: 5077530390135568203, guid: a1c49a84019227e48a27c144af4fc8b6, type: 3}
+      propertyPath: audioSource
+      value: 
+      objectReference: {fileID: 1867962666}
+    - target: {fileID: 5077530390135568203, guid: a1c49a84019227e48a27c144af4fc8b6, type: 3}
+      propertyPath: holdButtonClip
+      value: 
+      objectReference: {fileID: 8300000, guid: c70bcb3d8f8d6884ca3b062fa4cfb665, type: 3}
     - target: {fileID: 7354513173634097489, guid: a1c49a84019227e48a27c144af4fc8b6, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -8868,6 +8892,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3883945de059b2b4cba330148c56c609, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!82 &1867962666 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 6551754244233854249, guid: a1c49a84019227e48a27c144af4fc8b6, type: 3}
+  m_PrefabInstance: {fileID: 1867962660}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1932386605
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10318,6 +10347,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 474238, guid: fd9d58dbfb8f846f58b62a48334a0058, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11460108, guid: fd9d58dbfb8f846f58b62a48334a0058, type: 3}
+      propertyPath: DebugMode
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
