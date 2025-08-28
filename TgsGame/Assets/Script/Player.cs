@@ -25,13 +25,10 @@ public class Player : MonoBehaviour
     public float blinkInterval = 0.2f;
     private List<Renderer> childRenderers = new List<Renderer>();
 
-    // --- 追加 ---
-    [Header("サウンド設定")]
-    public AudioSource audioSource;        // 再生用の AudioSource
-    public AudioClip holdButtonClip;       // ボタン押し中に流すサウンド
-    public float playInterval = 1.0f;      // 何秒おきに音を鳴らすか
-
-    private Coroutine soundCoroutine;      // コルーチン管理用
+    [Header("Sound Settings")]
+    public AudioClip swimSound;   // ← 再生するサウンドをインスペクターで指定
+    private AudioSource audioSource;
+    private Coroutine stopSoundCoroutine;
 
     void Start()
     {
@@ -55,11 +52,9 @@ public class Player : MonoBehaviour
             Debug.LogWarning("子オブジェクトの Renderer が見つかりません。点滅できません。");
         }
 
-        // AudioSource が未設定なら自動追加
-        if (audioSource == null)
-        {
-            audioSource = gameObject.AddComponent<AudioSource>();
-        }
+        // AudioSource セットアップ
+        audioSource = gameObject.AddComponent<AudioSource>();
+        audioSource.loop = false;
     }
 
     void Update()
@@ -88,7 +83,7 @@ public class Player : MonoBehaviour
         scale.y = (zRotation > 90f && zRotation < 270f) ? -Mathf.Abs(scale.y) : Mathf.Abs(scale.y);
         transform.localScale = scale;
 
-        // Aボタン（またはスペースキー）で移動
+        // Aボタン（またはスペースキー）で移動 ＋ サウンド再生
         if (Input.GetButtonDown("Fire1") || Input.GetKeyDown(KeyCode.Space))
         {
             Vector2 inputDirection = new Vector2(horizontal, vertical);
@@ -105,6 +100,12 @@ public class Player : MonoBehaviour
                 }
 
                 swimAnimWeight = 1.0f;
+
+                // サウンド再生
+                if (swimSound != null)
+                {
+                    PlaySwimSound();
+                }
             }
         }
 
@@ -114,23 +115,30 @@ public class Player : MonoBehaviour
             animator.SetLayerWeight(1, swimAnimWeight);
             swimAnimWeight *= 0.99f;
         }
+    }
 
-        // --- サウンド再生処理 ---
-        if (Input.GetButton("Fire1") || Input.GetKey(KeyCode.Space))
+    void PlaySwimSound()
+    {
+        if (!audioSource.isPlaying)
         {
-            if (soundCoroutine == null)
-            {
-                soundCoroutine = StartCoroutine(PlayHoldSound());
-            }
+            audioSource.clip = swimSound;
+            audioSource.Play();
         }
-        else
+
+        // すでに停止コルーチンが動いてたら止める
+        if (stopSoundCoroutine != null)
         {
-            if (soundCoroutine != null)
-            {
-                StopCoroutine(soundCoroutine);
-                soundCoroutine = null;
-            }
+            StopCoroutine(stopSoundCoroutine);
         }
+        // 1秒後に停止
+        stopSoundCoroutine = StartCoroutine(StopSoundAfterDelay(1f));
+    }
+
+    IEnumerator StopSoundAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        audioSource.Stop();
+        stopSoundCoroutine = null;
     }
 
     void OnTriggerEnter(Collider other)
@@ -174,19 +182,6 @@ public class Player : MonoBehaviour
         foreach (Renderer r in childRenderers)
         {
             r.enabled = true;
-        }
-    }
-
-    // --- 追加：ボタン押し中に繰り返し音を鳴らす ---
-    IEnumerator PlayHoldSound()
-    {
-        while (true)
-        {
-            if (holdButtonClip != null && audioSource != null)
-            {
-                audioSource.PlayOneShot(holdButtonClip);
-            }
-            yield return new WaitForSeconds(playInterval);
         }
     }
 }

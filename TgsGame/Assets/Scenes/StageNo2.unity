@@ -8816,13 +8816,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 630874820}
     - target: {fileID: 5077530390135568203, guid: a1c49a84019227e48a27c144af4fc8b6, type: 3}
+      propertyPath: swimSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 5635d63017db20c4aa7509eb846840d2, type: 3}
+    - target: {fileID: 5077530390135568203, guid: a1c49a84019227e48a27c144af4fc8b6, type: 3}
       propertyPath: audioSource
       value: 
       objectReference: {fileID: 1867962666}
     - target: {fileID: 5077530390135568203, guid: a1c49a84019227e48a27c144af4fc8b6, type: 3}
       propertyPath: holdButtonClip
       value: 
-      objectReference: {fileID: 8300000, guid: 6ca7f75f950704c429b95edfff6585ed, type: 3}
+      objectReference: {fileID: 8300000, guid: c70bcb3d8f8d6884ca3b062fa4cfb665, type: 3}
     - target: {fileID: 7354513173634097489, guid: a1c49a84019227e48a27c144af4fc8b6, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
