@@ -25,6 +25,14 @@ public class Player : MonoBehaviour
     public float blinkInterval = 0.2f;
     private List<Renderer> childRenderers = new List<Renderer>();
 
+    // --- 追加 ---
+    [Header("サウンド設定")]
+    public AudioSource audioSource;        // 再生用の AudioSource
+    public AudioClip holdButtonClip;       // ボタン押し中に流すサウンド
+    public float playInterval = 1.0f;      // 何秒おきに音を鳴らすか
+
+    private Coroutine soundCoroutine;      // コルーチン管理用
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -45,6 +53,12 @@ public class Player : MonoBehaviour
         if (childRenderers.Count == 0)
         {
             Debug.LogWarning("子オブジェクトの Renderer が見つかりません。点滅できません。");
+        }
+
+        // AudioSource が未設定なら自動追加
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
         }
     }
 
@@ -100,6 +114,23 @@ public class Player : MonoBehaviour
             animator.SetLayerWeight(1, swimAnimWeight);
             swimAnimWeight *= 0.99f;
         }
+
+        // --- サウンド再生処理 ---
+        if (Input.GetButton("Fire1") || Input.GetKey(KeyCode.Space))
+        {
+            if (soundCoroutine == null)
+            {
+                soundCoroutine = StartCoroutine(PlayHoldSound());
+            }
+        }
+        else
+        {
+            if (soundCoroutine != null)
+            {
+                StopCoroutine(soundCoroutine);
+                soundCoroutine = null;
+            }
+        }
     }
 
     void OnTriggerEnter(Collider other)
@@ -119,7 +150,6 @@ public class Player : MonoBehaviour
             currentHP--;
             currentHP = Mathf.Clamp(currentHP, 0, maxHP);
             StartCoroutine(BlinkEffect());
-            
         }
 
         if (other.CompareTag("Item2"))
@@ -144,6 +174,19 @@ public class Player : MonoBehaviour
         foreach (Renderer r in childRenderers)
         {
             r.enabled = true;
+        }
+    }
+
+    // --- 追加：ボタン押し中に繰り返し音を鳴らす ---
+    IEnumerator PlayHoldSound()
+    {
+        while (true)
+        {
+            if (holdButtonClip != null && audioSource != null)
+            {
+                audioSource.PlayOneShot(holdButtonClip);
+            }
+            yield return new WaitForSeconds(playInterval);
         }
     }
 }
