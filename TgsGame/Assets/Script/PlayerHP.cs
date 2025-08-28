@@ -133,11 +133,14 @@ public class PlayerHP : MonoBehaviour
     }
 
     // 共通エフェクト処理
+
     void SpawnEffect(GameObject effectPrefab)
     {
         if (effectPrefab == null) return;
 
-        GameObject effect = Instantiate(effectPrefab, transform.position, Quaternion.identity);
+        Vector3 spawnPosition = new Vector3(transform.position.x, transform.position.y, -1f);
+        GameObject effect = Instantiate(effectPrefab, spawnPosition, Quaternion.identity);
         Destroy(effect, 1f); // 1秒後に削除
     }
+
 }

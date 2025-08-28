@@ -25797,6 +25797,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 11460108, guid: fd9d58dbfb8f846f58b62a48334a0058, type: 3}
+      propertyPath: DebugMode
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -25817,7 +25821,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1269131800696095523, guid: 6b3ee6585eb158f4d9e7fbbc23a3f19b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 6.72
+      value: 13.8
       objectReference: {fileID: 0}
     - target: {fileID: 1269131800696095523, guid: 6b3ee6585eb158f4d9e7fbbc23a3f19b, type: 3}
       propertyPath: m_LocalPosition.y
@@ -25825,7 +25829,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1269131800696095523, guid: 6b3ee6585eb158f4d9e7fbbc23a3f19b, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.32
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1269131800696095523, guid: 6b3ee6585eb158f4d9e7fbbc23a3f19b, type: 3}
       propertyPath: m_LocalRotation.w
@@ -27406,15 +27410,15 @@ PrefabInstance:
     - target: {fileID: 8733515811316264474, guid: 64d9d71ee7185044e9b52446b48bea00, type: 3}
       propertyPath: item1Effect
       value: 
-      objectReference: {fileID: 3935327252410687746, guid: 20e29d24395878645a98d4cd2ec4fbd4, type: 3}
+      objectReference: {fileID: 1202522996400206, guid: f87e7926fd589094b8a269e14b8bea5e, type: 3}
     - target: {fileID: 8733515811316264474, guid: 64d9d71ee7185044e9b52446b48bea00, type: 3}
       propertyPath: item2Effect
       value: 
-      objectReference: {fileID: 8057329672888845340, guid: b493233392cfd65429bfebd131054f00, type: 3}
+      objectReference: {fileID: 1459862227383078, guid: cc461484bcafc664fb68be84c1fc6860, type: 3}
     - target: {fileID: 8733515811316264474, guid: 64d9d71ee7185044e9b52446b48bea00, type: 3}
       propertyPath: scoreUpEffect
       value: 
-      objectReference: {fileID: 1844657278483113614, guid: fc86210589e5cf3489c73b9fb7726317, type: 3}
+      objectReference: {fileID: 1500378020736912, guid: 2547a66872ebe45408ace228820a79e1, type: 3}
     - target: {fileID: 8733515811316264474, guid: 64d9d71ee7185044e9b52446b48bea00, type: 3}
       propertyPath: item1EffectPrefab
       value: 
@@ -27465,7 +27469,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1269131800696095523, guid: 62185d26b13fbf74895673d2423de09a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.4274292
+      value: 10.507429
       objectReference: {fileID: 0}
     - target: {fileID: 1269131800696095523, guid: 62185d26b13fbf74895673d2423de09a, type: 3}
       propertyPath: m_LocalPosition.y
@@ -27473,7 +27477,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1269131800696095523, guid: 62185d26b13fbf74895673d2423de09a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.19590941
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1269131800696095523, guid: 62185d26b13fbf74895673d2423de09a, type: 3}
       propertyPath: m_LocalRotation.w

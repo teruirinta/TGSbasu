@@ -162,6 +162,8 @@ MonoBehaviour:
   staminaSlider: {fileID: 0}
   particleEffectPrefab: {fileID: 9057914743139324598, guid: 3c9dd3bba7fd7cb4791fa05de169c482, type: 3}
   maxHP: 5
+  blinkDuration: 2
+  blinkInterval: 0.2
 --- !u!114 &685282531490256449
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -176,8 +178,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   score: 100
   scoreText: {fileID: 0}
-  scoreUpEffectText: {fileID: 0}
-  scoreDownEffectText: {fileID: 0}
+  scorePopupPrefab: {fileID: 0}
   isGoalReached: 0
   goalTransform: {fileID: 0}
 --- !u!114 &1900317657328322936
@@ -203,6 +204,9 @@ MonoBehaviour:
   healSE: {fileID: 8300000, guid: 457a01d5ccb8c634aab4823a9195e1b9, type: 3}
   scoreSE: {fileID: 8300000, guid: 51c644e2a3d708f4896ede2b413623f7, type: 3}
   audioSource: {fileID: 6551754244233854249}
+  item1Effect: {fileID: 1202522996400206, guid: f87e7926fd589094b8a269e14b8bea5e, type: 3}
+  item2Effect: {fileID: 1459862227383078, guid: cc461484bcafc664fb68be84c1fc6860, type: 3}
+  scoreUpEffect: {fileID: 1500378020736912, guid: 2547a66872ebe45408ace228820a79e1, type: 3}
 --- !u!114 &5804111044067815344
 MonoBehaviour:
   m_ObjectHideFlags: 0
