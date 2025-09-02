@@ -8794,15 +8794,15 @@ PrefabInstance:
     - target: {fileID: 1900317657328322936, guid: a1c49a84019227e48a27c144af4fc8b6, type: 3}
       propertyPath: item1Effect
       value: 
-      objectReference: {fileID: 3935327252410687746, guid: 20e29d24395878645a98d4cd2ec4fbd4, type: 3}
+      objectReference: {fileID: 1202522996400206, guid: f87e7926fd589094b8a269e14b8bea5e, type: 3}
     - target: {fileID: 1900317657328322936, guid: a1c49a84019227e48a27c144af4fc8b6, type: 3}
       propertyPath: item2Effect
       value: 
-      objectReference: {fileID: 8057329672888845340, guid: b493233392cfd65429bfebd131054f00, type: 3}
+      objectReference: {fileID: 1459862227383078, guid: cc461484bcafc664fb68be84c1fc6860, type: 3}
     - target: {fileID: 1900317657328322936, guid: a1c49a84019227e48a27c144af4fc8b6, type: 3}
       propertyPath: scoreUpEffect
       value: 
-      objectReference: {fileID: 1844657278483113614, guid: fc86210589e5cf3489c73b9fb7726317, type: 3}
+      objectReference: {fileID: 1500378020736912, guid: 2547a66872ebe45408ace228820a79e1, type: 3}
     - target: {fileID: 1900317657328322936, guid: a1c49a84019227e48a27c144af4fc8b6, type: 3}
       propertyPath: 'hearts.Array.data[0]'
       value: 
