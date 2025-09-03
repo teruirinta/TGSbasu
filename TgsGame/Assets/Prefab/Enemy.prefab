@@ -135,7 +135,7 @@ MonoBehaviour:
   boostedSpeed: 3
   yThreshold: 2
   xThreshold: 4
-  swimSoundClip: {fileID: 8300000, guid: 7f64d21c4aabe4e4d8fd25338be4aba2, type: 3}
+  swimSoundClip: {fileID: 0}
 --- !u!136 &260410416106207510
 CapsuleCollider:
   m_ObjectHideFlags: 0
