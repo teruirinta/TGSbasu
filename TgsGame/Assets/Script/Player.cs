@@ -10,7 +10,7 @@ public class Player : MonoBehaviour
     public float recoverRate = 2f;
     public Slider staminaSlider;
     public GameObject particleEffectPrefab;
-
+    public float Prefabtime;
     public int maxHP = 5;
     private int currentHP = 5;
 
@@ -97,8 +97,11 @@ public class Player : MonoBehaviour
 
                 if (particleEffectPrefab != null)
                 {
-                    GameObject effect = Instantiate(particleEffectPrefab, transform.position, Quaternion.identity);
-                    Destroy(effect, 1f);
+                    Vector3 offset = -transform.forward * 1f; // 後方に0.5ユニット移動（必要に応じて調整）
+                    Vector3 spawnPosition = transform.position + offset;
+
+                    GameObject effect = Instantiate(particleEffectPrefab, spawnPosition, Quaternion.identity);
+                    Destroy(effect, Prefabtime);
                 }
 
                 // ← サウンドを1回だけ鳴らす
