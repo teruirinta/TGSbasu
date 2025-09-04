@@ -585,6 +585,10 @@ PrefabInstance:
       propertyPath: InitialModule.startColor.maxColor.r
       value: 0.2270826
       objectReference: {fileID: 0}
+    - target: {fileID: 3227234990893807158, guid: 2a53c6d48fc97654599647824a737fae, type: 3}
+      propertyPath: velocity.y
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 3913654534611400433, guid: 2a53c6d48fc97654599647824a737fae, type: 3}
       propertyPath: m_LocalPosition.x
       value: -13.88
@@ -3054,6 +3058,10 @@ PrefabInstance:
       propertyPath: horizontalSpeed
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3227234990893807158, guid: b1581377273b5d3428d11b164ed25733, type: 3}
+      propertyPath: velocity.y
+      value: -3
+      objectReference: {fileID: 0}
     - target: {fileID: 3913654534611400433, guid: b1581377273b5d3428d11b164ed25733, type: 3}
       propertyPath: m_LocalPosition.x
       value: 90.68756
@@ -3692,6 +3700,10 @@ PrefabInstance:
       propertyPath: horizontalSpeed
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3227234990893807158, guid: b1581377273b5d3428d11b164ed25733, type: 3}
+      propertyPath: velocity.y
+      value: -3
+      objectReference: {fileID: 0}
     - target: {fileID: 3913654534611400433, guid: b1581377273b5d3428d11b164ed25733, type: 3}
       propertyPath: m_LocalPosition.x
       value: -6.909996
@@ -3834,6 +3846,10 @@ PrefabInstance:
     - target: {fileID: 1780548267582187761, guid: b1581377273b5d3428d11b164ed25733, type: 3}
       propertyPath: horizontalSpeed
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3227234990893807158, guid: b1581377273b5d3428d11b164ed25733, type: 3}
+      propertyPath: velocity.y
+      value: -3
       objectReference: {fileID: 0}
     - target: {fileID: 3913654534611400433, guid: b1581377273b5d3428d11b164ed25733, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5490,6 +5506,10 @@ PrefabInstance:
       propertyPath: horizontalSpeed
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3227234990893807158, guid: b1581377273b5d3428d11b164ed25733, type: 3}
+      propertyPath: velocity.y
+      value: -3
+      objectReference: {fileID: 0}
     - target: {fileID: 3913654534611400433, guid: b1581377273b5d3428d11b164ed25733, type: 3}
       propertyPath: m_LocalPosition.x
       value: 148.89
@@ -5819,6 +5839,10 @@ PrefabInstance:
     - target: {fileID: 1780548267582187761, guid: b1581377273b5d3428d11b164ed25733, type: 3}
       propertyPath: horizontalSpeed
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3227234990893807158, guid: b1581377273b5d3428d11b164ed25733, type: 3}
+      propertyPath: velocity.y
+      value: -3
       objectReference: {fileID: 0}
     - target: {fileID: 3913654534611400433, guid: b1581377273b5d3428d11b164ed25733, type: 3}
       propertyPath: m_LocalPosition.x
@@ -6544,7 +6568,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1286664078}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 77dc5eb0b07d8d74d9b04aa4cc6d4344, type: 3}
   m_Name: 
@@ -6929,6 +6953,10 @@ PrefabInstance:
     - target: {fileID: 1780548267582187761, guid: b1581377273b5d3428d11b164ed25733, type: 3}
       propertyPath: horizontalSpeed
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3227234990893807158, guid: b1581377273b5d3428d11b164ed25733, type: 3}
+      propertyPath: velocity.y
+      value: -3
       objectReference: {fileID: 0}
     - target: {fileID: 3913654534611400433, guid: b1581377273b5d3428d11b164ed25733, type: 3}
       propertyPath: m_LocalPosition.x
@@ -7950,7 +7978,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1269131800696095523, guid: f5b8a1387644f004da76f9ddecb50eeb, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -7.5
+      value: -6.93
       objectReference: {fileID: 0}
     - target: {fileID: 1269131800696095523, guid: f5b8a1387644f004da76f9ddecb50eeb, type: 3}
       propertyPath: m_LocalPosition.z
