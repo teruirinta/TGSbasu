@@ -66,7 +66,7 @@ public class Goalselector : MonoBehaviour
 
         if (index == 0)
         {
-            SceneManager.LoadScene("Stage2");
+            SceneManager.LoadScene("StageNo2");
         }
         else if (index == 1)
         {
