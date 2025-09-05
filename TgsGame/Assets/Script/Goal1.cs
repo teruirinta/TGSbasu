@@ -39,7 +39,7 @@ public class Goal1 : MonoBehaviour
             {
                 SceneManager.LoadScene("goal");
             }
-            else if (currentScene == "Stage2")
+            else if (currentScene == "StageNo2")
             {
                 SceneManager.LoadScene("goal2");
             }
