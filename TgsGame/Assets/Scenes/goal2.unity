@@ -984,6 +984,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1940214123}
   - component: {fileID: 1940214124}
+  - component: {fileID: 1940214125}
   m_Layer: 0
   m_Name: Menu
   m_TagString: Untagged
@@ -1013,13 +1014,31 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1940214121}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d405f5043fe69354dbc0125384c1e7c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   menuItems:
-  - {fileID: 0}
+  - {fileID: 2043026921}
+  - {fileID: 2043026921}
+  selector: {fileID: 638447421}
+  moveSE: {fileID: 8300000, guid: 9d637153a67d7934d8b1c420a23d0336, type: 3}
+  decideSE: {fileID: 8300000, guid: b3aad4a27e28ff941ac5a3d464292942, type: 3}
+--- !u!114 &1940214125
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1940214121}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c762793cb2d7d24aaf1090bf1337185, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  menuItems:
+  - {fileID: 2043026921}
   - {fileID: 2043026921}
   selector: {fileID: 638447421}
   moveSE: {fileID: 8300000, guid: 9d637153a67d7934d8b1c420a23d0336, type: 3}
