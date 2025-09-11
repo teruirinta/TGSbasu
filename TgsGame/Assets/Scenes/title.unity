@@ -408,6 +408,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3003762523909897680, guid: 343cd85c8dde28f4a9c7ce9458ff6a4d, type: 3}
+      propertyPath: 'm_DirectAudioMutes.Array.data[0]'
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3003762523909897680, guid: 343cd85c8dde28f4a9c7ce9458ff6a4d, type: 3}
       propertyPath: 'm_DirectAudioVolumes.Array.data[0]'
       value: 1
       objectReference: {fileID: 0}
@@ -423,6 +427,10 @@ PrefabInstance:
       propertyPath: waitTime
       value: 60
       objectReference: {fileID: 0}
+    - target: {fileID: 3062055781258138785, guid: 343cd85c8dde28f4a9c7ce9458ff6a4d, type: 3}
+      propertyPath: bgmSource
+      value: 
+      objectReference: {fileID: 1067108662}
     - target: {fileID: 7252131943932004564, guid: 343cd85c8dde28f4a9c7ce9458ff6a4d, type: 3}
       propertyPath: m_Name
       value: PvPlayer
@@ -867,6 +875,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1c8844496a1704d40943c21d0db13360, type: 3}
+--- !u!82 &1067108662 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 2600705153310143841, guid: 740023b7312386a4882d575d8d2c673a, type: 3}
+  m_PrefabInstance: {fileID: 4742263830407667396}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1078721128
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1989,7 +2002,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2600705153310143841, guid: 740023b7312386a4882d575d8d2c673a, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2600705153310143841, guid: 740023b7312386a4882d575d8d2c673a, type: 3}
       propertyPath: m_Resource

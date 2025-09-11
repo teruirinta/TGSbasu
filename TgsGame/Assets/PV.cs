@@ -5,60 +5,50 @@ using UnityEngine.Video;
 
 public class PV : MonoBehaviour
 {
-    public float waitTime = 10.0f; //何秒放っておいたら動画が流れるか（エディタ側で変更して）
+    public float waitTime = 10.0f; // 何秒放っておいたら動画が流れるか（エディタ側で変更して）
 
-    float elapsedTime = 0.0f;   //経過時間
-    Vector3 lastMousePosition;  //マウスの位置
-    bool isPlayeng = false;     //再生中かどうかフラグ
-    VideoPlayer player;         //動画プレイヤーコンポーネント
+    float elapsedTime = 0.0f;   // 経過時間
+    Vector3 lastMousePosition;  // マウスの位置
+    bool isPlayeng = false;     // 再生中かどうかフラグ
+    VideoPlayer player;         // 動画プレイヤーコンポーネント
 
-    public Canvas canvas;       //Unity側でCanvasをアタッチ
-
+    public Canvas canvas;       // Unity側でCanvasをアタッチ
+    public AudioSource bgmSource; // タイトル画面のBGM用 AudioSource（Unity側でアタッチ）
 
     private void Start()
     {
         player = GetComponent<VideoPlayer>();
-        player.loopPointReached += Stop;        //動画が終わったらStopが呼ばれるようイベントを仕込む
+        player.loopPointReached += Stop; // 動画が終わったらStopが呼ばれるようイベントを仕込む
 
-        lastMousePosition = Input.mousePosition;    //初期マウス位置
+        lastMousePosition = Input.mousePosition; // 初期マウス位置
     }
 
-    // Update is called once per frame
     void Update()
     {
-        //再生してない
-        if (isPlayeng == false)
+        if (!isPlayeng)
         {
-            //時間計測
             elapsedTime += Time.deltaTime;
 
-            //何か操作したら経過時間リセット
             if (Input.anyKeyDown || (Input.mousePosition != lastMousePosition) || PadCheck())
             {
                 elapsedTime = 0.0f;
                 lastMousePosition = Input.mousePosition;
             }
 
-
-            //指定した時間が経過したら再生
             if (elapsedTime > waitTime)
             {
                 elapsedTime = 0.0f;
                 Play();
             }
         }
-
-        //再生中
         else
         {
-            //何かキーが押されたらPV停止
             if (Input.anyKeyDown || PadCheck())
             {
                 Stop(player);
             }
         }
     }
-
 
     /// <summary>
     /// 再生
@@ -67,30 +57,36 @@ public class PV : MonoBehaviour
     {
         player.Play();
         isPlayeng = true;
-        canvas.GetComponent<Canvas>().enabled = false;  //動画再生時はUIを消す
-    }
+        canvas.GetComponent<Canvas>().enabled = false; // 動画再生時はUIを消す
 
+        if (bgmSource != null && bgmSource.isPlaying)
+        {
+            bgmSource.Stop(); // BGMを停止
+        }
+    }
 
     /// <summary>
     /// 停止
     /// </summary>
-    /// <param name="vp">プレイヤー（メンバ変数にしてるからいらないんだけど、動画終了時勝手に呼ばれるようにするために必要</param>
+    /// <param name="vp">プレイヤー（動画終了時に呼ばれるため引数が必要）</param>
     private void Stop(VideoPlayer vp)
     {
-        canvas.GetComponent<Canvas>().enabled = true;   //再生停止したらUIを復活
+        canvas.GetComponent<Canvas>().enabled = true; // 再生停止したらUIを復活
         player.Stop();
         isPlayeng = false;
-    }
 
+        if (bgmSource != null)
+        {
+            bgmSource.Play(); // BGMを再開
+        }
+    }
 
     bool PadCheck()
     {
-        // Unityの旧Inputで使えるジョイスティックボタンは 0〜19 まで
         for (int joyNum = 1; joyNum <= 8; joyNum++) // 最大8台まで想定
         {
             for (int button = 0; button <= 19; button++)
             {
-                // "Joystick1Button0" のように文字列でKeyCodeを作る
                 string keyName = $"Joystick{joyNum}Button{button}";
                 KeyCode code = (KeyCode)System.Enum.Parse(typeof(KeyCode), keyName);
 
@@ -101,7 +97,6 @@ public class PV : MonoBehaviour
             }
         }
 
-        // 特殊: Joystick番号を省略した「どのコントローラーでもボタンX」
         for (int button = 0; button <= 19; button++)
         {
             KeyCode code = (KeyCode)System.Enum.Parse(typeof(KeyCode), $"JoystickButton{button}");
