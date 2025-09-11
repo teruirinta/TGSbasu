@@ -97,11 +97,8 @@ public class Player : MonoBehaviour
 
                 if (particleEffectPrefab != null)
                 {
-                    Vector3 offset = -transform.forward * 1f; // 後方に0.5ユニット移動（必要に応じて調整）
-                    Vector3 spawnPosition = transform.position + offset;
-
-                    GameObject effect = Instantiate(particleEffectPrefab, spawnPosition, Quaternion.identity);
-                    Destroy(effect, Prefabtime);
+                    GameObject effect = Instantiate(particleEffectPrefab, transform.position, Quaternion.identity);
+                    Destroy(effect, 1f); // 1秒後に自動削除
                 }
 
                 // ← サウンドを1回だけ鳴らす
